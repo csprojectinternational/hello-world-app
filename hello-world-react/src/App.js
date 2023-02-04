@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import Textbox from './components/Textbox/Textbox';
 import './App.css';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         >
           Damn that's a pretty spooky ghost! 😱
         </a>
+        <Textbox />
       </header>
     </div>
   );
