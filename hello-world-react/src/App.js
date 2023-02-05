@@ -12,11 +12,11 @@ function App() {
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Damn that's a pretty cool ghost! 😱 \nHehehhehe
+          Damn that's a pretty cool ghost! 😱
         </a>
         <Textbox />
       </header>
