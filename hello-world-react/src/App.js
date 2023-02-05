@@ -16,8 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Damn that's a pretty ghost! 😱
-          Hehehhehe
+          Damn that's a pretty cool ghost! 😱 \nHehehhehe
         </a>
         <Textbox />
       </header>
