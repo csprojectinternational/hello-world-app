@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Woooo Eric the Ghost was hereeeee 👻
+          Woooo Pranav the Ghost was hereeeee 👻
         </p>
         <a
           className="App-link"
@@ -16,7 +16,8 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Damn that's a pretty spooky ghost! 😱
+          Damn that's a pretty ghost! 😱
+          Hehehhehe
         </a>
         <Textbox />
       </header>
