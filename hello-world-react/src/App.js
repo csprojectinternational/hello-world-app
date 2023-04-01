@@ -1,20 +1,65 @@
 import './App.css';
 
-import { BrowserRouter, Routes, Route } from "react-router-dom"; // router
+// router
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// mui and fonts
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import '@fontsource/montserrat/300.css';
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/700.css';
+
+// pages
+import Onboarding from './pages/Onboarding/Onboarding';
+import Register from './pages/Register/Register';
+import Dashboard from './pages/Dashboard/Dashboard';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
+
+// navbar
+import NavBar from './components/NavBar/NavBar';
+import { grey, red } from '@mui/material/colors';
 
 // ROOT
+// contains router and mui styling
+// individual pages are in the pages folder
+
+const primaryTheme = createTheme({
+  palette: {
+    primary: grey,
+    secondary: red
+  },
+  typography: {
+    fontFamily: [
+      'Montserrat',
+      '-apple-system',
+      'BlinkMacSystemFont',
+      '"Segoe UI"',
+      'Roboto',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"',
+    ].join(',')
+  }
+});
 
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route exact path="/" element={<p>Onboarding</p>} />
-          <Route exact path="/register" element={<p>Register</p>} />
-          <Route exact path="/dashboard" element={<p>Dashboard</p>} />
-          <Route path="*" element={<p>404: This page does not exist!</p>} />
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider theme={primaryTheme}>
+        <NavBar />
+        <BrowserRouter>
+          <Routes>
+            <Route exact path="/" element={<Onboarding />} />
+            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }
