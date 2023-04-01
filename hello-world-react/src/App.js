@@ -21,9 +21,12 @@ import NavBar from './components/NavBar/NavBar';
 import { grey, red } from '@mui/material/colors';
 
 // ROOT
-// contains router and mui styling
+// contains router and mui styling default theme
 // individual pages are in the pages folder
 
+// this is the default theme
+// its easier to use css directly imo
+// so often this will be overridden
 const primaryTheme = createTheme({
   palette: {
     primary: grey,

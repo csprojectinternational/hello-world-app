@@ -3,7 +3,11 @@ import React from 'react'
 
 const Onboarding = () => {
   return (
-    <Typography>Onboarding</Typography>
+    <div style={{ margin: '20vmin' }} >
+      <Typography variant="h3" sx={{ fontStyle: 'italic', fontFamily: 'serif' }} >
+        music tutoring made easy...
+      </Typography>
+    </div>
   )
 }
 
