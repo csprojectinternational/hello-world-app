@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface HelloRepository extends MongoRepository<Hello, ObjectId> {
+public interface StudentRepository extends MongoRepository<Student, ObjectId> {
 
-    List<Hello> findByKey(int key);
+    List<Student> findByFirstName(String FirstName);
 
-    @Query("{value: ?0 }")
-    List<Hello> getHellosByValue(String value);
+    //@Query("{value: ?0 }")
+    List<Student> getStudentsByKisdID(String kisdID);
 }
