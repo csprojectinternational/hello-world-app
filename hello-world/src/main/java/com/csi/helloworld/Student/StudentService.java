@@ -1,4 +1,4 @@
-package com.csi.helloworld;
+package com.csi.helloworld.Student;
 
 import java.util.List;
 import java.util.Optional;
