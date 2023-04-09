@@ -1,6 +1,6 @@
 import React from 'react'
 import TextField from '@mui/material/TextField'
-import { Stack, Button, Typography, MenuItem } from '@mui/material';
+import { Stack, Button, Typography, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import './Register.css'
 import { Link } from 'react-router-dom';
 
@@ -173,32 +173,105 @@ const Register = ({ isStudent }) => {
             id="teachingGrade"
             label="Grade"
             variant="outlined"
+            defaultValue="9"
+            select
             // onChange={}
-          />
+          >
+            {
+              ["9", "10", "11", "12"].map((grade) => (
+                <MenuItem key={grade} value={grade}>{grade}</MenuItem>
+              ))
+            }
+          </TextField>
           <TextField
             id="teachingBand"
             label="What band are you in?"
             variant="outlined"
+            defaultValue="Concert II"
+            select
             // onChange={}
-          />
+          >
+            {
+              [
+                "Concert II",
+                "Concert I",
+                "Symphonic Band",
+                "Wind Symphony"
+              ].map((band) => (
+                <MenuItem key={band} value={band}>{band}</MenuItem>
+              ))
+            }
+          </TextField>
           <TextField
             id="teachingInstrument"
             label="What instrument would you like to teach?"
             variant="outlined"
+            defaultValue="Flute"
+            select
             // onChange={}
-          />
-          <TextField
-            id="distinctions"
-            label="What distinctions do you have?"
-            variant="outlined"
-            // onChange={}
-          />
+          >
+            {
+              instruments.map((instrument) => (
+                <MenuItem key={instrument} value={instrument}>{instrument}</MenuItem>
+              ))
+            }
+          </TextField>
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">What distinctions do you have?</InputLabel>
+            <Select
+              id="distinctions"
+              label="What distinctions do you have?"
+              variant="outlined"
+              defaultValue={["None"]}
+              multiple
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    bgcolor: 'lightblue',
+                    '& .MuiMenuItem-root': {
+                        backgroundColor: 'white'
+                    },
+                    '& .MuiMenuItem-root:hover': {
+                        backgroundColor: 'lightgrey'
+                    },
+                    // for some reason this doesnt work:
+                    // '& .Mui-selected': {
+                    //   backgroundColor: 'red'
+                    // }
+                  }
+                },
+              }}
+              // onChange={}
+            >
+              {
+                [
+                  "None",
+                  "TMEA Freshman Region Band",
+                  "TMEA Region Symphonic Band",
+                  "TMEA Region Wind Ensemble/Area qualified",
+                  "TMEA All-State Band",
+                  "UIL Class 1 solo: Division 1 Rating",
+                  "UIL Class 1 ensemble: Division 1 Rating"
+                ].map((distinction) => (
+                  <MenuItem key={distinction} value={distinction}>{distinction}</MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
           <TextField
             id="tutorSettingPreference"
             label="Would you like to instruct in-person or virtually?"
             variant="outlined"
+            defaultValue="No Preference"
+            select
             // onChange={}
-          />
+          >
+            {
+              ["No Preference", "In-Person", "Virtual"].map((choice) => (
+                <MenuItem key={choice} value={choice}>{choice}</MenuItem>
+              ))
+            }
+          </TextField>
         </Stack>
 
         }
