@@ -53,8 +53,8 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={primaryTheme}>
-        <NavBar />
         <BrowserRouter>
+          <NavBar />
           <Routes>
             <Route exact path="/" element={<Onboarding />} />
             <Route exact path="/register" element={<Onboarding />} />
