@@ -1,4 +1,4 @@
-package com.csi.helloworld;
+package com.csi.helloworld.Tutor;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository
-public interface StudentRepository extends MongoRepository<Student, ObjectId> {
+public interface TutorRepository extends MongoRepository<Tutor, ObjectId> {
 
-    List<Student> findByFirstName(String FirstName);
+    List<Tutor> findByFirstName(String FirstName);
 
     //@Query("{value: ?0 }")
-    List<Student> getStudentsByKisdID(String kisdID);
+    List<Tutor> getTutorsByKisdID(String kisdID);
 }

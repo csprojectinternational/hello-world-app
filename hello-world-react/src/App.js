@@ -53,11 +53,13 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={primaryTheme}>
-        <NavBar />
         <BrowserRouter>
+          <NavBar />
           <Routes>
             <Route exact path="/" element={<Onboarding />} />
-            <Route exact path="/register" element={<Register />} />
+            <Route exact path="/register" element={<Onboarding />} />
+            <Route exact path="/register-student" element={<Register isStudent={true}/>} />
+            <Route exact path="/register-tutor" element={<Register isStudent={false}/>} />
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>

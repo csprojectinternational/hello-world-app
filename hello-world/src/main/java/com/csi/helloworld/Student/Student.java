@@ -1,4 +1,4 @@
-package com.csi.helloworld;
+package com.csi.helloworld.Student;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -9,21 +9,22 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Document(collection = "root")
+@Document(collection = "students")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 
 public class Student {
 
-    @Id    
+    @Id
     private ObjectId id;
-    private String band = "";
-    private String firstName = "";
-    private String lastName = "";
-    private String instrument = "";
-    private String kisdID = "";
-    private String password = "";
+    private String band;
+    private String firstName;
+    private String lastName;
+    private String instrument;
+    private String kisdID;
+    private String password;
+    private String settingPreference;
     private boolean currentlyInLessons;
     private int grade;
 
@@ -102,6 +103,17 @@ public class Student {
     @Field("password")
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    // getter and setter methods for settingPreference
+    @Field("settingPreference")
+    public String getSettingPreference() {
+        return settingPreference;
+    }
+
+    @Field("settingPreference")
+    public void setSettingPreference(String settingPreference) {
+        this.settingPreference = settingPreference;
     }
 
     // getter and setter methods for currentlyInLessons
