@@ -1,24 +1,17 @@
 import React from 'react'
 import TextField from '@mui/material/TextField'
-import { Stack, Button, Typography, MenuItem } from '@mui/material';
+import { Stack, Typography, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import './Register.css'
 import { Link } from 'react-router-dom';
+import Background from '../../components/Background/Background';
+import YellowButton from '../../components/YellowButton/YellowButton';
 
 // TODO:
-// create dropdowns
 // make confirm password work
 // implement mandatory fields
 // collect everything up into an array on submit
 
 const Register = ({ isStudent }) => {
-
-  const buttonStyle = {
-    height: "3rem",
-    backgroundColor: "lightgrey",
-    ":hover": {
-      backgroundColor: "white"
-    }
-  }
 
   const instruments = [
     "Flute",
@@ -37,13 +30,11 @@ const Register = ({ isStudent }) => {
   ]
 
   return (
-    <div style={{position: "relative"}}>
-      <Link to="/" style={{textDecoration: "none", position: "absolute", left: "10px", top: "calc(-10vmin + 10px)"}}>
-        <Button variant="contained" sx={{...buttonStyle, height: "2rem"}}>
-          BACK
-        </Button>
+    <Background style={{position: "relative"}}>
+      <Link to="/" style={{textDecoration: "none", position: "absolute", left: "20px", top: "20px"}}>
+        <YellowButton>BACK</YellowButton>
       </Link>
-      <Stack spacing={3} className="stack">
+      <Stack spacing={3} className="stack" sx={{margin: 0, padding: '20vmin'}}>
         <Typography variant="h4" color="initial" sx={{fontWeight: "bold"}}>
           SIGN UP AS A {isStudent ? "STUDENT" : "TUTOR"}
         </Typography>
@@ -56,6 +47,12 @@ const Register = ({ isStudent }) => {
         <TextField
           id="lastName"
           label="Last Name"
+          variant="outlined"
+          // onChange={}
+        />
+        <TextField
+          id="id"
+          label="Katy ISD ID"
           variant="outlined"
           // onChange={}
         />
@@ -151,6 +148,20 @@ const Register = ({ isStudent }) => {
             }
           </TextField>
           <TextField
+            id="studentCommunicationPreference"
+            label="Would you like to be contacted via phone or email?"
+            variant="outlined"
+            defaultValue="No Preference"
+            select
+            // onChange={}
+          >
+            {
+              ["No Preference", "Phone", "Email"].map((choice) => (
+                <MenuItem key={choice} value={choice}>{choice}</MenuItem>
+              ))
+            }
+          </TextField>
+          <TextField
             id="privateLessons"
             label="Are you currently registered in paid private lessons?"
             variant="outlined"
@@ -173,42 +184,115 @@ const Register = ({ isStudent }) => {
             id="teachingGrade"
             label="Grade"
             variant="outlined"
+            defaultValue="9"
+            select
             // onChange={}
-          />
+          >
+            {
+              ["9", "10", "11", "12"].map((grade) => (
+                <MenuItem key={grade} value={grade}>{grade}</MenuItem>
+              ))
+            }
+          </TextField>
           <TextField
             id="teachingBand"
             label="What band are you in?"
             variant="outlined"
+            defaultValue="Concert II"
+            select
             // onChange={}
-          />
+          >
+            {
+              [
+                "Concert II",
+                "Concert I",
+                "Symphonic Band",
+                "Wind Symphony"
+              ].map((band) => (
+                <MenuItem key={band} value={band}>{band}</MenuItem>
+              ))
+            }
+          </TextField>
           <TextField
             id="teachingInstrument"
             label="What instrument would you like to teach?"
             variant="outlined"
+            defaultValue="Flute"
+            select
             // onChange={}
-          />
-          <TextField
-            id="distinctions"
-            label="What distinctions do you have?"
-            variant="outlined"
-            // onChange={}
-          />
+          >
+            {
+              instruments.map((instrument) => (
+                <MenuItem key={instrument} value={instrument}>{instrument}</MenuItem>
+              ))
+            }
+          </TextField>
+          <FormControl>
+            <InputLabel id="demo-simple-select-label">What distinctions do you have?</InputLabel>
+            <Select
+              id="distinctions"
+              label="What distinctions do you have?"
+              variant="outlined"
+              defaultValue={["None"]}
+              multiple
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    bgcolor: 'lightblue',
+                    '& .MuiMenuItem-root': {
+                        backgroundColor: 'white'
+                    },
+                    '& .MuiMenuItem-root:hover': {
+                        backgroundColor: 'lightgrey'
+                    },
+                    // for some reason this doesnt work:
+                    // '& .Mui-selected': {
+                    //   backgroundColor: 'red'
+                    // }
+                  }
+                },
+              }}
+              // onChange={}
+            >
+              {
+                [
+                  "None",
+                  "TMEA Freshman Region Band",
+                  "TMEA Region Symphonic Band",
+                  "TMEA Region Wind Ensemble/Area Qualified",
+                  "TMEA All-State Band",
+                  "UIL Class 1 solo: Division 1 Rating",
+                  "UIL Class 1 ensemble: Division 1 Rating"
+                ].map((distinction) => (
+                  <MenuItem key={distinction} value={distinction}>{distinction}</MenuItem>
+                ))
+              }
+            </Select>
+          </FormControl>
           <TextField
             id="tutorSettingPreference"
             label="Would you like to instruct in-person or virtually?"
             variant="outlined"
+            defaultValue="No Preference"
+            select
             // onChange={}
-          />
+          >
+            {
+              ["No Preference", "In-Person", "Virtual"].map((choice) => (
+                <MenuItem key={choice} value={choice}>{choice}</MenuItem>
+              ))
+            }
+          </TextField>
         </Stack>
 
         }
 
-        <Button variant="contained" sx={buttonStyle} onClick={() => {
+        <YellowButton onClick={() => {
           console.log("hi");
-        }}>Submit</Button>
+        }}>Submit</YellowButton>
 
       </Stack>
-    </div>
+    </Background>
   )
 }
 

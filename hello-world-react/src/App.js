@@ -57,7 +57,6 @@ function App() {
           <NavBar />
           <Routes>
             <Route exact path="/" element={<Onboarding />} />
-            <Route exact path="/register" element={<Onboarding />} />
             <Route exact path="/register-student" element={<Register isStudent={true}/>} />
             <Route exact path="/register-tutor" element={<Register isStudent={false}/>} />
             <Route exact path="/dashboard" element={<Dashboard />} />
