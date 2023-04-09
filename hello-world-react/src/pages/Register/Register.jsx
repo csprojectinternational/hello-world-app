@@ -259,7 +259,7 @@ const Register = ({ isStudent }) => {
                   "None",
                   "TMEA Freshman Region Band",
                   "TMEA Region Symphonic Band",
-                  "TMEA Region Wind Ensemble/Area qualified",
+                  "TMEA Region Wind Ensemble/Area Qualified",
                   "TMEA All-State Band",
                   "UIL Class 1 solo: Division 1 Rating",
                   "UIL Class 1 ensemble: Division 1 Rating"
