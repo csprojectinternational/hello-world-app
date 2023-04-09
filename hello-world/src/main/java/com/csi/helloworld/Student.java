@@ -16,14 +16,14 @@ import lombok.NoArgsConstructor;
 
 public class Student {
 
-    @Id    
+    @Id
     private ObjectId id;
-    private String band = "";
-    private String firstName = "";
-    private String lastName = "";
-    private String instrument = "";
-    private String kisdID = "";
-    private String password = "";
+    private String band;
+    private String firstName;
+    private String lastName;
+    private String instrument;
+    private String kisdID;
+    private String password;
     private boolean currentlyInLessons;
     private int grade;
 
