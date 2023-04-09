@@ -1,10 +1,10 @@
 import React from 'react'
 import TextField from '@mui/material/TextField'
-import { Stack, Button, Typography, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
+import { Stack, Typography, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import './Register.css'
 import { Link } from 'react-router-dom';
 import Background from '../../components/Background/Background';
-
+import YellowButton from '../../components/YellowButton/YellowButton';
 // TODO:
 // create dropdowns
 // make confirm password work
@@ -12,14 +12,6 @@ import Background from '../../components/Background/Background';
 // collect everything up into an array on submit
 
 const Register = ({ isStudent }) => {
-
-  const buttonStyle = {
-    height: "3rem",
-    backgroundColor: "#FFDC22",
-    ":hover": {
-      backgroundColor: "lightyellow"
-    }
-  }
 
   const instruments = [
     "Flute",
@@ -40,9 +32,7 @@ const Register = ({ isStudent }) => {
   return (
     <Background style={{position: "relative"}}>
       <Link to="/" style={{textDecoration: "none", position: "absolute", left: "10px", top: "10px"}}>
-        <Button variant="contained" sx={{...buttonStyle, height: "2rem"}}>
-          BACK
-        </Button>
+        <YellowButton>BACK</YellowButton>
       </Link>
       <Stack spacing={3} className="stack" sx={{margin: 0, padding: '20vmin'}}>
         <Typography variant="h4" color="initial" sx={{fontWeight: "bold"}}>
@@ -277,9 +267,9 @@ const Register = ({ isStudent }) => {
 
         }
 
-        <Button variant="contained" sx={buttonStyle} onClick={() => {
+        <YellowButton onClick={() => {
           console.log("hi");
-        }}>Submit</Button>
+        }}>Submit</YellowButton>
 
       </Stack>
     </Background>
