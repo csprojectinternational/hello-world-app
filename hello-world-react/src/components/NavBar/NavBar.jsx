@@ -14,7 +14,7 @@ const NavBar = () => {
           <img src="./logo.png" alt="logo" className="logo" style={{ height: '2.5rem', paddingRight: '1rem' }}></img>
         </Link>
         <Typography variant="h4" sx={{ fontWeight: 700, color: 'black', fontStyle: "none" }}>
-          TIE-D TOGETHER
+          TIED TOGETHER
         </Typography>
         <Avatar sx={{ position: 'absolute', right: '1rem' }}></Avatar>
       </Toolbar>
