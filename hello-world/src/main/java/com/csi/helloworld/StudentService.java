@@ -17,11 +17,23 @@ public class StudentService {
 
     //create?
 
-    public Student addStudent(Student student) {
-        String idString = UUID.randomUUID().toString().split("-")[0]; //this method was written with chatGPT help
-        ObjectId id = new ObjectId(idString);
-        student.setId(id);
-        return studentRepository.save(student);
+    public void addStudent(Student student) {
+        if (student.getId() == null) {
+            String idString = UUID.randomUUID().toString().split("-")[0];
+            ObjectId id = new ObjectId(idString);
+            student.setId(id);
+        }
+
+        student.setFirstName("John");
+        student.setLastName("Doe");
+        student.setBand("Symphonic");
+        student.setCurrentlyInLessons(false);
+        student.setPassword("ieat203");
+        student.setInstrument("Trumpet");
+        student.setGrade(7);
+        student.setKisdID("V1929302");
+
+        studentRepository.save(student);
     }
     
     //read
@@ -45,7 +57,7 @@ public class StudentService {
         return studentRepository.getStudentsByKisdID(kisdID);
     }
 
-    //update
+    //update (template, redo later)
 
     public Student updateStudent(Student studentRequest) {
         //get the existing document from DB
