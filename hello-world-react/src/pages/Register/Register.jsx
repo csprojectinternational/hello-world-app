@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField'
 import { Stack, Button, Typography, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import './Register.css'
 import { Link } from 'react-router-dom';
+import Background from '../../components/Background/Background';
 
 // TODO:
 // create dropdowns
@@ -14,9 +15,9 @@ const Register = ({ isStudent }) => {
 
   const buttonStyle = {
     height: "3rem",
-    backgroundColor: "lightgrey",
+    backgroundColor: "#FFDC22",
     ":hover": {
-      backgroundColor: "white"
+      backgroundColor: "lightyellow"
     }
   }
 
@@ -37,13 +38,13 @@ const Register = ({ isStudent }) => {
   ]
 
   return (
-    <div style={{position: "relative"}}>
-      <Link to="/" style={{textDecoration: "none", position: "absolute", left: "10px", top: "calc(-10vmin + 10px)"}}>
+    <Background style={{position: "relative"}}>
+      <Link to="/" style={{textDecoration: "none", position: "absolute", left: "10px", top: "10px"}}>
         <Button variant="contained" sx={{...buttonStyle, height: "2rem"}}>
           BACK
         </Button>
       </Link>
-      <Stack spacing={3} className="stack">
+      <Stack spacing={3} className="stack" sx={{margin: 0, padding: '20vmin'}}>
         <Typography variant="h4" color="initial" sx={{fontWeight: "bold"}}>
           SIGN UP AS A {isStudent ? "STUDENT" : "TUTOR"}
         </Typography>
@@ -281,7 +282,7 @@ const Register = ({ isStudent }) => {
         }}>Submit</Button>
 
       </Stack>
-    </div>
+    </Background>
   )
 }
 

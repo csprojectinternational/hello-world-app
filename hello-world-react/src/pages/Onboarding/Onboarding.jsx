@@ -1,15 +1,17 @@
 import { Stack, Typography } from '@mui/material'
 import React from 'react'
 import OnboardingButton from '../../components/OnboardingButton/OnboardingButton'
+import Background from '../../components/Background/Background'
 
 const Onboarding = () => {
-
   return (
-    <Stack spacing={3} sx={{ margin: '20vmin' }}>
-      <Typography variant="h3" sx={{fontStyle: 'italic', fontFamily: 'serif'}}>music tutoring made easy...</Typography>
-      <OnboardingButton link="register-tutor" text="I want to be a tutor" />
-      <OnboardingButton link="register-student" text="I want to be a student" />
-    </Stack>
+    <Background>
+      <Stack spacing={3} sx={{ padding: '20vmin' }}>
+        <Typography variant="h3" sx={{fontStyle: 'italic', fontFamily: 'serif'}}>music tutoring made easy...</Typography>
+        <OnboardingButton link="register-tutor" text="I want to be a tutor" />
+        <OnboardingButton link="register-student" text="I want to be a student" />
+      </Stack>
+    </Background>
   )
 }
 
