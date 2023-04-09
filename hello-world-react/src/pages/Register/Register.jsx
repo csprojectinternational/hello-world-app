@@ -5,8 +5,8 @@ import './Register.css'
 import { Link } from 'react-router-dom';
 import Background from '../../components/Background/Background';
 import YellowButton from '../../components/YellowButton/YellowButton';
+
 // TODO:
-// create dropdowns
 // make confirm password work
 // implement mandatory fields
 // collect everything up into an array on submit
@@ -31,7 +31,7 @@ const Register = ({ isStudent }) => {
 
   return (
     <Background style={{position: "relative"}}>
-      <Link to="/" style={{textDecoration: "none", position: "absolute", left: "10px", top: "10px"}}>
+      <Link to="/" style={{textDecoration: "none", position: "absolute", left: "20px", top: "20px"}}>
         <YellowButton>BACK</YellowButton>
       </Link>
       <Stack spacing={3} className="stack" sx={{margin: 0, padding: '20vmin'}}>
@@ -47,6 +47,12 @@ const Register = ({ isStudent }) => {
         <TextField
           id="lastName"
           label="Last Name"
+          variant="outlined"
+          // onChange={}
+        />
+        <TextField
+          id="id"
+          label="Katy ISD ID"
           variant="outlined"
           // onChange={}
         />
@@ -137,6 +143,20 @@ const Register = ({ isStudent }) => {
           >
             {
               ["No Preference", "In-Person", "Virtual"].map((choice) => (
+                <MenuItem key={choice} value={choice}>{choice}</MenuItem>
+              ))
+            }
+          </TextField>
+          <TextField
+            id="studentCommunicationPreference"
+            label="Would you like to be contacted via phone or email?"
+            variant="outlined"
+            defaultValue="No Preference"
+            select
+            // onChange={}
+          >
+            {
+              ["No Preference", "Phone", "Email"].map((choice) => (
                 <MenuItem key={choice} value={choice}>{choice}</MenuItem>
               ))
             }
