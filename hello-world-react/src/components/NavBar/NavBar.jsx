@@ -9,8 +9,8 @@ const NavBar = () => {
   return (
     <AppBar position="sticky" sx={{ backgroundColor: 'lightgrey', boxShadow: "0px 0px" }}>
       <Toolbar>
-        <img src="logo.png" alt="logo" className="logo" style={{ height: '2.5rem', paddingRight: '1rem' }} />
-        <Typography variant="h4" sx={{ fontWeight: 700, color: 'darkred' }}>
+        <img src="./logo.png" alt="logo" className="logo" style={{ height: '2.5rem', paddingRight: '1rem' }} />
+        <Typography variant="h4" sx={{ fontWeight: 700, color: 'black' }}>
           TIED TOGETHER
         </Typography>
         <Avatar sx={{ position: 'absolute', right: '1rem' }}></Avatar>
