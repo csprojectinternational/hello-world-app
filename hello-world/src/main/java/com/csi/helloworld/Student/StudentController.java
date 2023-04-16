@@ -38,7 +38,6 @@ public class StudentController {
     }
 
 
-    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/all")
     public ResponseEntity<List<Student>> getAllStudents() {
         //return studentService.findAllStudents();
