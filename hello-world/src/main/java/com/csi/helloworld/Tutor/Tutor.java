@@ -35,6 +35,6 @@ public class Tutor {
 
     private ArrayList<Student> scheduledStudents = new ArrayList<>();
 
-    
+
 
 }

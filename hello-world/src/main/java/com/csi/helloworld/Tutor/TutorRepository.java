@@ -15,4 +15,6 @@ public interface TutorRepository extends MongoRepository<Tutor, ObjectId> {
     Optional<Tutor> findTutorByFirstName(String FirstName);
     Optional<Tutor> findTutorByKisdID(String kisdID);
 
+    Optional<Tutor> deleteTutorByKisdID(String kisdID);
+
 }

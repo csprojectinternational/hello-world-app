@@ -27,6 +27,7 @@ public class Student {
     private String kisdID;
     private String password;
     private String settingPreference;
+    private String communicationPreference;
     private String email;
     private boolean currentlyInLessons;
     private int grade;
