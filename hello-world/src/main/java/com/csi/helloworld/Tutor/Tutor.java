@@ -25,12 +25,13 @@ public class Tutor {
     private String firstName;
     private String lastName;
     private String phoneNumber;
+    private String email;
     private String band;
     private String instrument;
     private String kisdID;
     private String password;
     private String settingPreference;
-    private int distinctionScore;
+    //private int distinctionScore;
     private int grade;
 
     private ArrayList<Student> scheduledStudents = new ArrayList<>();
