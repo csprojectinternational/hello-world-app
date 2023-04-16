@@ -8,6 +8,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +38,7 @@ public class StudentController {
     }
 
 
-
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/all")
     public ResponseEntity<List<Student>> getAllStudents() {
         //return studentService.findAllStudents();
@@ -62,14 +63,13 @@ public class StudentController {
 
     @PutMapping
     public Student modifyStudent(@RequestBody Student student) {
-        return studentService.updateStudent(student);
+        return studentService.updateCurrentTutor(student);
     }
 
 
-
-    @DeleteMapping("/{id}")
-    public String deleteStudent(@PathVariable ObjectId id) {
-        return studentService.deleteStudent(id);
+    @DeleteMapping("/{kisdID}")
+    public String deleteStudent(@PathVariable String kisdID) {
+        return studentService.deleteStudent(kisdID);
     }
 
     

@@ -15,4 +15,6 @@ public interface StudentRepository extends MongoRepository<Student, ObjectId> {
     Optional<Student> findStudentByFirstName(String FirstName);
     Optional<Student> findStudentByKisdID(String kisdID);
 
+    Optional<Student> deleteStudentByKisdID(String kisdID);
+
 }

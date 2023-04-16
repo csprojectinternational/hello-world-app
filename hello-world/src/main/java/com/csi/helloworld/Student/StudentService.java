@@ -40,20 +40,19 @@ public class StudentService {
 
     //update (template, redo later)
 
-    public Student updateStudent(Student studentRequest) {
+    public Student updateCurrentTutor(Student studentRequest) {
         //get the existing document from DB
         //populate new kisdID from request to existing object/entity/document
         Student existingStudent = studentRepository.findById(studentRequest.getId()).get();
-        existingStudent.setFirstName(studentRequest.getFirstName());
-        existingStudent.setKisdID(studentRequest.getKisdID());
+        existingStudent.setCurrentTutor(studentRequest.getCurrentTutor());
         
         return studentRepository.save(existingStudent);
     }
 
     //delete
 
-    public String deleteStudent(ObjectId id) {
-        studentRepository.deleteById(id);
-        return id.toString() + "student deleted from dashboard";
+    public String deleteStudent(String kisdID) {
+        studentRepository.deleteStudentByKisdID(kisdID);
+        return kisdID + " deleted from dashboard";
     }
 }
