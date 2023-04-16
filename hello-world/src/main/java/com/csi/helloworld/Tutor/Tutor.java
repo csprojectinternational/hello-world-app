@@ -147,4 +147,28 @@ public class Tutor {
         return false;
     }
     
+
+    public void scheduleLesson(Student student) {
+        if (this.scheduledStudents.contains(student)) {
+            return;
+        }
+    
+        Student.removeFromAllWaitingLists(student);
+    
+        this.scheduledStudents.add(student);
+        student.setCurrentTutor(this.getKisdID());
+    }
+    public static void removeFromAllWaitingLists(Student student) {
+    
+        if (Student.waitingListMaster.contains(student)) {
+            Student.waitingListMaster.remove(student);
+        }
+    
+        for (Tutor tutor : Tutor.tutors) {
+            if (tutor.waitingList.contains(student)) {
+                tutor.waitingList.remove(student);
+            }
+        }
+    }
+    
 }
