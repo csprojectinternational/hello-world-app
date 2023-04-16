@@ -1,6 +1,7 @@
 package com.csi.helloworld.Student;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -11,8 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StudentRepository extends MongoRepository<Student, ObjectId> {
 
-    List<Student> findByFirstName(String FirstName);
+    Optional<Student> findStudentByFirstName(String FirstName);
+    Optional<Student> findStudentByKisdID(String kisdID);
 
-    //@Query("{value: ?0 }")
-    List<Student> getStudentsByKisdID(String kisdID);
 }

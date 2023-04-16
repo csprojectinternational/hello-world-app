@@ -18,13 +18,25 @@ public class TutorService {
     //create?
 
     public void addTutor(Tutor tutor) {
-        if (tutor.getId() == null) {
+        
+        tutorRepository.insert(tutor);
+
+        /*if (tutor.getId() == null) {
             String idString = UUID.randomUUID().toString().split("-")[0];
             ObjectId id = new ObjectId(idString);
             tutor.setId(id);
         }
 
-        tutorRepository.save(tutor);
+        tutor.setFirstName("John");
+        tutor.setLastName("Doe");
+        tutor.setBand("Symphonic");
+        tutor.setCurrentlyInLessons(false);
+        tutor.setPassword("ieat203");
+        tutor.setInstrument("Trumpet");
+        tutor.setGrade(7);
+        tutor.setKisdID("V1929302");
+
+        tutorRepository.save(tutor);*/
     }
     
     //read
@@ -34,18 +46,15 @@ public class TutorService {
     }
 
     //two methods that appear to achieve the same purpose but from different videos, not sure which is better
-    public Tutor getTutorById(ObjectId id) {
-        return tutorRepository.findById(id).get();
-    }
-    public Optional<Tutor> singleTutor(ObjectId id) {
+    public Optional<Tutor> getTutorByObjectID(ObjectId id) {
         return tutorRepository.findById(id);
     }
 
-    public List<Tutor> getTutorByFirstName(String firstName) {
-        return tutorRepository.findByFirstName(firstName);
+    public Optional<Tutor> getTutorByFirstName(String firstName) {
+        return tutorRepository.findTutorByFirstName(firstName);
     }
-    public List<Tutor> getTutorByKisdID(String kisdID) {
-        return tutorRepository.getTutorsByKisdID(kisdID);
+    public Optional<Tutor> getTutorByKisdID(String kisdID) {
+        return tutorRepository.findTutorByKisdID(kisdID);
     }
 
     //update (template, redo later)

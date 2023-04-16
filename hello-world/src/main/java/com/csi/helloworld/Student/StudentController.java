@@ -2,6 +2,7 @@ package com.csi.helloworld.Student;
 
 import java.util.List;
 //import java.util.Optional;
+import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,23 +35,25 @@ public class StudentController {
     }
 
     @GetMapping("/all")
-    public List<Student> getStudents() {
-        return studentService.findAllStudents();
+    public ResponseEntity<List<Student>> getAllStudents() {
+        //return studentService.findAllStudents();
+        return new ResponseEntity<List<Student>>(studentService.findAllStudents(), HttpStatus.OK);
     }
+    
 
-    @GetMapping("/{id}")
-    public Student getStudent(@PathVariable ObjectId id) {
-        return studentService.getStudentById(id);
-    }
-
-    @GetMapping("/firstName/{firstName}")
-    public List<Student> findStudentUsingFirstName(@PathVariable String firstName) {
-        return studentService.getStudentByFirstName(firstName);
+    @GetMapping("/id/{id}")
+    public ResponseEntity<Optional<Student>> getStudentByObjectID(@PathVariable ObjectId id) {
+        return new ResponseEntity<Optional<Student>>(studentService.getStudentByObjectID(id), HttpStatus.OK);
     }
 
     @GetMapping("/kisdID/{kisdID}")
-    public List<Student> getStudentByKisdID(@PathVariable String kisdID) {
-        return studentService.getStudentByKisdID(kisdID);
+    public ResponseEntity<Optional<Student>> getStudentByKisdID(@PathVariable String kisdID) {
+        return new ResponseEntity<Optional<Student>>(studentService.getStudentByKisdID(kisdID), HttpStatus.OK);
+    }
+
+    @GetMapping("/firstName/{firstName}")
+    public ResponseEntity<Optional<Student>> getStudentByFirstName(@PathVariable String firstName) {
+        return new ResponseEntity<Optional<Student>>(studentService.getStudentByFirstName(firstName), HttpStatus.OK);
     }
 
     @PutMapping

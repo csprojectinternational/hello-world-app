@@ -43,18 +43,15 @@ public class StudentService {
     }
 
     //two methods that appear to achieve the same purpose but from different videos, not sure which is better
-    public Student getStudentById(ObjectId id) {
-        return studentRepository.findById(id).get();
-    }
-    public Optional<Student> singleStudent(ObjectId id) {
+    public Optional<Student> getStudentByObjectID(ObjectId id) {
         return studentRepository.findById(id);
     }
 
-    public List<Student> getStudentByFirstName(String firstName) {
-        return studentRepository.findByFirstName(firstName);
+    public Optional<Student> getStudentByFirstName(String firstName) {
+        return studentRepository.findStudentByFirstName(firstName);
     }
-    public List<Student> getStudentByKisdID(String kisdID) {
-        return studentRepository.getStudentsByKisdID(kisdID);
+    public Optional<Student> getStudentByKisdID(String kisdID) {
+        return studentRepository.findStudentByKisdID(kisdID);
     }
 
     //update (template, redo later)
