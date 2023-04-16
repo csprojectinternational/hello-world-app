@@ -5,9 +5,9 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode> // can cause useEffect to run twice
     <App />
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 
 // do not touch this file. the root is App.js

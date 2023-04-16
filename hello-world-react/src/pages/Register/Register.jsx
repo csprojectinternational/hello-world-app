@@ -42,7 +42,7 @@ const Register = ({ isStudent }) => {
   const getStudents = async () => {
     try {
       const res = await api.get('/api/v1/students/all');
-      console.log(res.data);
+      console.log(res.data)
       setStudents(res.data);
     } catch (e) {
       console.log(e);
@@ -257,7 +257,7 @@ const Register = ({ isStudent }) => {
               ))
             }
           </TextField>
-          <FormControl>
+          {/* <FormControl>
             <InputLabel id="demo-simple-select-label">What distinctions do you have?</InputLabel>
             <Select
               name="distinctions"
@@ -298,7 +298,7 @@ const Register = ({ isStudent }) => {
                 ))
               }
             </Select>
-          </FormControl>
+          </FormControl> */}
           <TextField
             name="tutorSettingPreference"
             label="Would you like to instruct in-person or virtually?"
@@ -318,8 +318,73 @@ const Register = ({ isStudent }) => {
         }
 
         <YellowButton onClick={() => {
+
           // check password and confirm password match
-          // if (collectedData.password)
+          if (collectedData.password != collectedData.confirmPassword) {
+            alert("Password and Confirm Password Do Not Match!");
+            return;
+          }
+
+          // id veritifcation
+          // check length
+          if (collectedData.id.length > 8) {
+            alert("Katy ISD ID is invalid!");
+            return;
+          }
+          // check if first char is letter
+          if (!/^[a-zA-Z]/.test(collectedData.id.charAt(0))) {
+            alert("Katy ISD ID is invalid!");
+            return;
+          }
+          // convert first letter to uppercase if it is lowercase
+          const firstChar = collectedData.id.charAt(0);
+          const firstCharUpper = firstChar.toUpperCase();
+          const newID = firstCharUpper + collectedData.id.slice(1);
+          // check if the last 7 characters are all numbers
+          if (!/^\d{7}$/.test(newID.slice(1))) {
+            alert("Katy ISD ID is invalid!");
+            return;
+          }
+
+          try {
+            if (isStudent) {
+              api.post('/api/v1/students/newStudent', {
+                band: collectedData.learningBand,
+                firstName: collectedData.firstName,
+                lastName: collectedData.lastName,
+                phoneNumber: collectedData.phone,
+                instrument: collectedData.learningInstrument,
+                kisdID: newID,
+                password: collectedData.password,
+                settingPreference: collectedData.studentSettingPreference,
+                communicationPreference: collectedData.studentCommunicationPreference,
+                email: collectedData.email,
+                currentlyInLessons: collectedData.privateLessons == 'Yes' ? true : false,
+                grade: collectedData.learningGrade,
+                currentTutor: null
+              });
+            } else {
+              api.post('/api/v1/tutors/newTutor', {
+                band: collectedData.teachingBand,
+                firstName: collectedData.firstName,
+                lastName: collectedData.lastName,
+                phoneNumber: collectedData.phone,
+                instrument: collectedData.teachingInstrument,
+                kisdID: newID,
+                password: collectedData.password,
+                settingPreference: collectedData.tutorSettingPreference,
+                email: collectedData.email,
+                grade: collectedData.teachingGrade,
+                currentTutor: null
+              });
+            }
+            
+          } catch (e) {
+            console.log(e.message);
+          }
+
+          getStudents();
+
         }}>Submit</YellowButton>
 
       </Stack>
