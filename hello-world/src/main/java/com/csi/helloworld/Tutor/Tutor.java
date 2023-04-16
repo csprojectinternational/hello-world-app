@@ -38,4 +38,113 @@ public class Tutor {
 
 
 
+
+    public static ArrayList<Student> tutorWaitingList(Tutor tutor) {
+        ArrayList<Student> waitingList = new ArrayList<>();
+    
+        for (Student student : Student.waitingListMaster) {
+            if (student.playsSameOrSimilarInstrument(tutor.instrument)) {
+                waitingList.add(student);
+            }
+        }
+    
+        Collections.sort(waitingList, new Comparator<Student>() {
+            @Override
+            public int compare(Student s1, Student s2) {
+                int score1 = calculateTeachingPriorityScore(s1, tutor);
+                int score2 = calculateTeachingPriorityScore(s2, tutor);
+                return score2 - score1;
+            }
+        });
+    
+        return waitingList;
+    }
+    
+    private static int calculateTeachingPriorityScore(Student student, Tutor tutor) {
+        int score = 0;
+    
+        int gradeLevel = student.getGrade();
+        if (gradeLevel == 6) {
+            score += 0;
+        } else if (gradeLevel == 7) {
+            score += 1;
+        } else if (gradeLevel == 8) {
+            score += 3;
+        }
+    
+        String bandLevel = student.getBand();
+        if (bandLevel.equals(Beginner)) {
+            score += 0;
+        } else if (bandLevel.equals(Lyric)) {
+            score += 0;
+        } else if (bandLevel.equals(Concert)) {
+            score += 1;
+        } else if (bandLevel.equals(Symphonic)) {
+            score += 3;
+        }
+    
+        if (student.getCurrentlyInLessons()) {
+            score += 4;
+        } else {
+            score += 0;
+        }
+    
+        String studentInstrument = student.getInstrument();
+        String tutorInstrument = tutor.getInstrument();
+        
+    if (studentInstrument.equals(tutorInstrument)) {
+        score += 0;
+    }
+    
+    
+    else if (Arrays.asList(Student.saxophones).contains(studentInstrument) && Arrays.asList(Student.saxophones).contains(tutorInstrument)) {
+        score += 3;
+    }
+    
+    
+    else if (Arrays.asList(Student.clarinets).contains(studentInstrument) && Arrays.asList(Student.clarinets).contains(tutorInstrument)) {
+        score += 3;
+    }
+    
+    
+    else if (Arrays.asList(Student.woodwinds).contains(studentInstrument) && Arrays.asList(Student.woodwinds).contains(tutorInstrument)) {
+        score += 10;
+    }
+    
+    
+    else if (Arrays.asList(Student.brass).contains(studentInstrument) && Arrays.asList(Student.brass).contains(tutorInstrument)) {
+        score += 10;
+    }
+    
+    
+    else {
+        score += 25;
+    }
+        
+        return score;
+    }
+    
+    public boolean playsSameOrSimilarInstrument(Tutor tutor) {
+        if (this.instrument.equals(tutor.getInstrument())) {
+            return true;
+        } else if (Arrays.asList(Student.woodwinds).contains(tutor.getInstrument())) {
+            if (Arrays.asList(Student.woodwinds).contains(this.instrument)) {
+                return true;
+            } else if (tutor.getInstrument().equals("Alto Saxophone") || tutor.getInstrument().equals("Tenor Saxophone")) {
+                if (Arrays.asList(Student.saxophones).contains(this.instrument)) {
+                    return true;
+                }
+            } else if (tutor.getInstrument().equals("Clarinet") || tutor.getInstrument().equals("Bass Clarinet")) {
+                if (Arrays.asList(Student.clarinets).contains(this.instrument)) {
+                    return true;
+                }
+            } else if (Arrays.asList(Student.brass).contains(tutor.getInstrument())) {
+                if (Arrays.asList(Student.brass).contains(this.instrument)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
 }
