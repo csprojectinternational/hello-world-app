@@ -11,7 +11,7 @@ import useEffectAfterMount from '../../hooks/useEffectAfterMount';
 // TODO:
 
 // make confirm password work
-// implement mandatory fields
+// implement mandatory fields, collect fields from outset
 // collect everything up into an array on submit
 
 // students: receive thanks page
@@ -41,22 +41,23 @@ const Register = ({ isStudent }) => {
 
   const getStudents = async () => {
     try {
-      const data = await api.get('/api/v1/students/firstName/Eric');
-      console.log(data);
-      setStudents(data);
+      const res = await api.get('/api/v1/students/all');
+      console.log(res.data);
+      setStudents(res.data);
     } catch (e) {
       console.log(e);
-      console.log("whoops");
     }
   }
 
-  // useEffectAfterMount(() => {
-  //   getStudents();
-  // }, [students]);
-
-  useEffect(() => {
+  useEffectAfterMount(() => {
     getStudents();
-  });
+  }, []);
+
+  const [collectedData, setCollectedData] = useState({});
+
+  const onDataCollected = (event) => {
+    setCollectedData({...collectedData, [event.target.name]: event.target.value});
+  }
 
   return (
     <Background style={{position: "relative"}}>
@@ -68,60 +69,60 @@ const Register = ({ isStudent }) => {
           SIGN UP AS A {isStudent ? "STUDENT" : "TUTOR"}
         </Typography>
         <TextField
-          id="firstName"
+          name="firstName"
           label="First Name"
           variant="outlined"
-          // onChange={}
+          onChange={onDataCollected}
         />
         <TextField
-          id="lastName"
+          name="lastName"
           label="Last Name"
           variant="outlined"
-          // onChange={}
+          onChange={onDataCollected}
         />
         <TextField
-          id="id"
+          name="id"
           label="Katy ISD ID"
           variant="outlined"
-          // onChange={}
+          onChange={onDataCollected}
         />
         <TextField
-          id="email"
+          name="email"
           label="Email Address"
           variant="outlined"
-          // onChange={}
+          onChange={onDataCollected}
         />
         <TextField
-          id="phone"
+          name="phone"
           label="Phone Number"
           variant="outlined"
-          // onChange={}
+          onChange={onDataCollected}
         />
         <TextField
-          id="password"
+          name="password"
           label="Password"
           type="password"
           variant="outlined"
-          // onChange={}
+          onChange={onDataCollected}
         />
         <TextField
-          id="confirmPassword"
+          name="confirmPassword"
           label="Confirm Password"
           type="password"
           variant="outlined"
-          // onChange={}
+          onChange={onDataCollected}
         />
 
         {isStudent ?
 
         <Stack spacing={3} className="stack">
           <TextField
-            id="learningGrade"
+            name="learningGrade"
             label="Grade"
             variant="outlined"
             defaultValue="6"
             select
-            // onChange={}
+            onChange={onDataCollected}
           >
             {
               ["6", "7", "8"].map((grade) => (
@@ -130,12 +131,12 @@ const Register = ({ isStudent }) => {
             }
           </TextField>
           <TextField
-            id="learningBand"
+            name="learningBand"
             label="What band are you in?"
             variant="outlined"
             defaultValue="Beginner"
             select
-            // onChange={}
+            onChange={onDataCollected}
           >
             {
               [
@@ -149,12 +150,12 @@ const Register = ({ isStudent }) => {
             }
           </TextField>
           <TextField
-            id="learningInstrument"
+            name="learningInstrument"
             label="What instrument are you learning?"
             variant="outlined"
             defaultValue="Flute"
             select
-            // onChange={}
+            onChange={onDataCollected}
           >
             {
               instruments.map((instrument) => (
@@ -163,12 +164,12 @@ const Register = ({ isStudent }) => {
             }
           </TextField>
           <TextField
-            id="studentSettingPreference"
+            name="studentSettingPreference"
             label="Would you like in-person or virtual lessons?"
             variant="outlined"
             defaultValue="No Preference"
             select
-            // onChange={}
+            onChange={onDataCollected}
           >
             {
               ["No Preference", "In-Person", "Virtual"].map((choice) => (
@@ -177,12 +178,12 @@ const Register = ({ isStudent }) => {
             }
           </TextField>
           <TextField
-            id="studentCommunicationPreference"
+            name="studentCommunicationPreference"
             label="Would you like to be contacted via phone or email?"
             variant="outlined"
             defaultValue="No Preference"
             select
-            // onChange={}
+            onChange={onDataCollected}
           >
             {
               ["No Preference", "Phone", "Email"].map((choice) => (
@@ -191,12 +192,12 @@ const Register = ({ isStudent }) => {
             }
           </TextField>
           <TextField
-            id="privateLessons"
+            name="privateLessons"
             label="Are you currently registered in paid private lessons?"
             variant="outlined"
             defaultValue="No"
             select
-            // onChange={}
+            onChange={onDataCollected}
           >
             {
               ["No", "Yes"].map((choice) => (
@@ -210,12 +211,12 @@ const Register = ({ isStudent }) => {
 
         <Stack spacing={3} className="stack">
           <TextField
-            id="teachingGrade"
+            name="teachingGrade"
             label="Grade"
             variant="outlined"
             defaultValue="9"
             select
-            // onChange={}
+            onChange={onDataCollected}
           >
             {
               ["9", "10", "11", "12"].map((grade) => (
@@ -224,12 +225,12 @@ const Register = ({ isStudent }) => {
             }
           </TextField>
           <TextField
-            id="teachingBand"
+            name="teachingBand"
             label="What band are you in?"
             variant="outlined"
             defaultValue="Concert II"
             select
-            // onChange={}
+            onChange={onDataCollected}
           >
             {
               [
@@ -243,12 +244,12 @@ const Register = ({ isStudent }) => {
             }
           </TextField>
           <TextField
-            id="teachingInstrument"
+            name="teachingInstrument"
             label="What instrument would you like to teach?"
             variant="outlined"
             defaultValue="Flute"
             select
-            // onChange={}
+            onChange={onDataCollected}
           >
             {
               instruments.map((instrument) => (
@@ -259,7 +260,7 @@ const Register = ({ isStudent }) => {
           <FormControl>
             <InputLabel id="demo-simple-select-label">What distinctions do you have?</InputLabel>
             <Select
-              id="distinctions"
+              name="distinctions"
               label="What distinctions do you have?"
               variant="outlined"
               defaultValue={["None"]}
@@ -281,7 +282,7 @@ const Register = ({ isStudent }) => {
                   }
                 },
               }}
-              // onChange={}
+              onChange={onDataCollected}
             >
               {
                 [
@@ -299,12 +300,12 @@ const Register = ({ isStudent }) => {
             </Select>
           </FormControl>
           <TextField
-            id="tutorSettingPreference"
+            name="tutorSettingPreference"
             label="Would you like to instruct in-person or virtually?"
             variant="outlined"
             defaultValue="No Preference"
             select
-            // onChange={}
+            onChange={onDataCollected}
           >
             {
               ["No Preference", "In-Person", "Virtual"].map((choice) => (
@@ -317,7 +318,8 @@ const Register = ({ isStudent }) => {
         }
 
         <YellowButton onClick={() => {
-          console.log("hi");
+          // check password and confirm password match
+          // if (collectedData.password)
         }}>Submit</YellowButton>
 
       </Stack>
