@@ -14,17 +14,12 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	/*@GetMapping("/")
-	public String apiRoot() {
-		return "Hello Student!";
-	}*/
-
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/greeting-javaconfig").allowedOrigins("http://localhost:8080");
+				registry.addMapping("api/v1/students/all").allowedOrigins("http://localhost:8080");
 			}
 		};
 	}
