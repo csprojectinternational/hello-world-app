@@ -10,9 +10,8 @@ import useEffectAfterMount from '../../hooks/useEffectAfterMount';
 
 // TODO:
 
-// make confirm password work
+// make error messages, remove all alerts
 // implement mandatory fields, collect fields from outset
-// collect everything up into an array on submit
 
 // students: receive thanks page
 // tutors: pick a student page
@@ -37,14 +36,34 @@ const Register = ({ isStudent }) => {
     "Percussion"
   ];
 
+  const learningGrades = ["6", "7", "8"];
+  const teachingGrades = ["9", "10", "11", "12"];
+  
+  const learningBands = [
+    "Beginner",
+    "Lyric",
+    "Concert",
+    "Symphonic"
+  ];
+  const teachingBands = [
+    "Concert II",
+    "Concert I",
+    "Symphonic Band",
+    "Wind Symphony"
+  ];
+
+  const settingPreferences = ["No Preference", "In-Person", "Virtual"];
+  const studentCommunicationPreferences = ["No Preference", "Phone", "Email"];
+  const noYes = ["No", "Yes"];
+
   const [students, setStudents] = useState();
 
   const getStudents = async () => {
     try {
       const res = await api.get('/api/v1/students/all');
-      console.log(res.data)
       setStudents(res.data);
     } catch (e) {
+      setErrorMessage("A server error occured. Please try again later!");
       console.log(e);
     }
   }
@@ -53,11 +72,34 @@ const Register = ({ isStudent }) => {
     getStudents();
   }, []);
 
-  const [collectedData, setCollectedData] = useState({});
+  const [collectedData, setCollectedData] = useState({
+    firstName: "",
+    lastName: "",
+    id: "",
+    email: "",
+    phone: "",    
+    password: "",
+    confirmPassword: "",
+    ...(isStudent ? {
+      learningGrade: learningGrades[0],
+      learningBand: learningBands[0],
+      learningInstrument: instruments[0],
+      studentSettingPreference: settingPreferences[0],
+      studentCommunicationPreference: studentCommunicationPreferences[0],
+      privateLessons: noYes[0]
+    } : {
+      teachingGrade: teachingGrades[0],
+      teachingBand: teachingBands[0],
+      teachingInstrument: instruments[0],
+      tutorSettingPreference: settingPreferences[0]
+    })
+  });
 
   const onDataCollected = (event) => {
     setCollectedData({...collectedData, [event.target.name]: event.target.value});
   }
+
+  const [errorMessage, setErrorMessage] = useState('');
 
   return (
     <Background style={{position: "relative"}}>
@@ -120,12 +162,12 @@ const Register = ({ isStudent }) => {
             name="learningGrade"
             label="Grade"
             variant="outlined"
-            defaultValue="6"
+            defaultValue={learningGrades[0]}
             select
             onChange={onDataCollected}
           >
             {
-              ["6", "7", "8"].map((grade) => (
+              learningGrades.map((grade) => (
                 <MenuItem key={grade} value={grade}>{grade}</MenuItem>
               ))
             }
@@ -134,17 +176,12 @@ const Register = ({ isStudent }) => {
             name="learningBand"
             label="What band are you in?"
             variant="outlined"
-            defaultValue="Beginner"
+            defaultValue={learningBands[0]}
             select
             onChange={onDataCollected}
           >
             {
-              [
-                "Beginner",
-                "Lyric",
-                "Concert",
-                "Symphonic"
-              ].map((band) => (
+              learningBands.map((band) => (
                 <MenuItem key={band} value={band}>{band}</MenuItem>
               ))
             }
@@ -153,7 +190,7 @@ const Register = ({ isStudent }) => {
             name="learningInstrument"
             label="What instrument are you learning?"
             variant="outlined"
-            defaultValue="Flute"
+            defaultValue={instruments[0]}
             select
             onChange={onDataCollected}
           >
@@ -167,12 +204,12 @@ const Register = ({ isStudent }) => {
             name="studentSettingPreference"
             label="Would you like in-person or virtual lessons?"
             variant="outlined"
-            defaultValue="No Preference"
+            defaultValue={settingPreferences[0]}
             select
             onChange={onDataCollected}
           >
             {
-              ["No Preference", "In-Person", "Virtual"].map((choice) => (
+              settingPreferences.map((choice) => (
                 <MenuItem key={choice} value={choice}>{choice}</MenuItem>
               ))
             }
@@ -181,12 +218,12 @@ const Register = ({ isStudent }) => {
             name="studentCommunicationPreference"
             label="Would you like to be contacted via phone or email?"
             variant="outlined"
-            defaultValue="No Preference"
+            defaultValue={studentCommunicationPreferences[0]}
             select
             onChange={onDataCollected}
           >
             {
-              ["No Preference", "Phone", "Email"].map((choice) => (
+              studentCommunicationPreferences.map((choice) => (
                 <MenuItem key={choice} value={choice}>{choice}</MenuItem>
               ))
             }
@@ -195,12 +232,12 @@ const Register = ({ isStudent }) => {
             name="privateLessons"
             label="Are you currently registered in paid private lessons?"
             variant="outlined"
-            defaultValue="No"
+            defaultValue={noYes[0]}
             select
             onChange={onDataCollected}
           >
             {
-              ["No", "Yes"].map((choice) => (
+              noYes.map((choice) => (
                 <MenuItem key={choice} value={choice}>{choice}</MenuItem>
               ))
             }
@@ -214,12 +251,12 @@ const Register = ({ isStudent }) => {
             name="teachingGrade"
             label="Grade"
             variant="outlined"
-            defaultValue="9"
+            defaultValue={teachingGrades[0]}
             select
             onChange={onDataCollected}
           >
             {
-              ["9", "10", "11", "12"].map((grade) => (
+              teachingGrades.map((grade) => (
                 <MenuItem key={grade} value={grade}>{grade}</MenuItem>
               ))
             }
@@ -228,17 +265,12 @@ const Register = ({ isStudent }) => {
             name="teachingBand"
             label="What band are you in?"
             variant="outlined"
-            defaultValue="Concert II"
+            defaultValue={teachingBands[0]}
             select
             onChange={onDataCollected}
           >
             {
-              [
-                "Concert II",
-                "Concert I",
-                "Symphonic Band",
-                "Wind Symphony"
-              ].map((band) => (
+              teachingBands.map((band) => (
                 <MenuItem key={band} value={band}>{band}</MenuItem>
               ))
             }
@@ -247,7 +279,7 @@ const Register = ({ isStudent }) => {
             name="teachingInstrument"
             label="What instrument would you like to teach?"
             variant="outlined"
-            defaultValue="Flute"
+            defaultValue={instruments[0]}
             select
             onChange={onDataCollected}
           >
@@ -303,12 +335,12 @@ const Register = ({ isStudent }) => {
             name="tutorSettingPreference"
             label="Would you like to instruct in-person or virtually?"
             variant="outlined"
-            defaultValue="No Preference"
+            defaultValue={settingPreferences[0]}
             select
             onChange={onDataCollected}
           >
             {
-              ["No Preference", "In-Person", "Virtual"].map((choice) => (
+              settingPreferences.map((choice) => (
                 <MenuItem key={choice} value={choice}>{choice}</MenuItem>
               ))
             }
@@ -319,21 +351,41 @@ const Register = ({ isStudent }) => {
 
         <YellowButton onClick={() => {
 
+          // filled out verification
+          if ([
+            collectedData.firstName,
+            collectedData.lastName,
+            collectedData.id,
+            collectedData.email,
+            collectedData.phone,
+            collectedData.password,
+            collectedData.confirmPassword
+          ].includes("")) {
+            setErrorMessage("Form Contains Empty Fields!");
+            return;
+          }
+
           // check password and confirm password match
           if (collectedData.password != collectedData.confirmPassword) {
-            alert("Password and Confirm Password Do Not Match!");
+            setErrorMessage("Password and Confirm Password Do Not Match!");
+            return;
+          }
+
+          // phone number verification
+          if (collectedData.phone.length != 10 || !/^[0-9]+$/.test(collectedData.phone)) {
+            setErrorMessage("Phone Number is invalid!");
             return;
           }
 
           // id veritifcation
           // check length
           if (collectedData.id.length > 8) {
-            alert("Katy ISD ID is invalid!");
+            setErrorMessage("Katy ISD ID is invalid!");
             return;
           }
           // check if first char is letter
           if (!/^[a-zA-Z]/.test(collectedData.id.charAt(0))) {
-            alert("Katy ISD ID is invalid!");
+            setErrorMessage("Katy ISD ID is invalid!");
             return;
           }
           // convert first letter to uppercase if it is lowercase
@@ -342,7 +394,7 @@ const Register = ({ isStudent }) => {
           const newID = firstCharUpper + collectedData.id.slice(1);
           // check if the last 7 characters are all numbers
           if (!/^\d{7}$/.test(newID.slice(1))) {
-            alert("Katy ISD ID is invalid!");
+            setErrorMessage("Katy ISD ID is invalid!");
             return;
           }
 
@@ -375,17 +427,20 @@ const Register = ({ isStudent }) => {
                 settingPreference: collectedData.tutorSettingPreference,
                 email: collectedData.email,
                 grade: collectedData.teachingGrade,
-                currentTutor: null
+                scheduledStudents: []
               });
             }
-            
+            setErrorMessage("");
           } catch (e) {
+            setErrorMessage("A server error occured. Please try again later!");
             console.log(e.message);
           }
 
           getStudents();
 
         }}>Submit</YellowButton>
+
+        <Typography variant="subtitle1" sx={{color: 'red'}}>{errorMessage}</Typography>
 
       </Stack>
     </Background>
