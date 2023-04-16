@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField'
 import { Stack, Typography, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import './Register.css'
 import { Link } from 'react-router-dom';
 import Background from '../../components/Background/Background';
 import YellowButton from '../../components/YellowButton/YellowButton';
+import api from '../../api/axiosConfig';
+import useEffectAfterMount from '../../hooks/useEffectAfterMount';
 
 // TODO:
+
 // make confirm password work
 // implement mandatory fields
 // collect everything up into an array on submit
+
+// students: receive thanks page
+// tutors: pick a student page
+
+// better onboarding page
 
 const Register = ({ isStudent }) => {
 
@@ -27,7 +35,28 @@ const Register = ({ isStudent }) => {
     "Baritone/Euphonium",
     "Tuba",
     "Percussion"
-  ]
+  ];
+
+  const [students, setStudents] = useState();
+
+  const getStudents = async () => {
+    try {
+      const data = await api.get('/api/v1/students/firstName/Eric');
+      console.log(data);
+      setStudents(data);
+    } catch (e) {
+      console.log(e);
+      console.log("whoops");
+    }
+  }
+
+  // useEffectAfterMount(() => {
+  //   getStudents();
+  // }, [students]);
+
+  useEffect(() => {
+    getStudents();
+  });
 
   return (
     <Background style={{position: "relative"}}>
