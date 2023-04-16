@@ -27,6 +27,8 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+
+
     @PostMapping("/newStudent")
     //@ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Void> createStudent(@RequestBody Student student) {
@@ -34,13 +36,14 @@ public class StudentController {
         return ResponseEntity.ok().build();
     }
 
+
+
     @GetMapping("/all")
     public ResponseEntity<List<Student>> getAllStudents() {
         //return studentService.findAllStudents();
         return new ResponseEntity<List<Student>>(studentService.findAllStudents(), HttpStatus.OK);
     }
     
-
     @GetMapping("/id/{id}")
     public ResponseEntity<Optional<Student>> getStudentByObjectID(@PathVariable ObjectId id) {
         return new ResponseEntity<Optional<Student>>(studentService.getStudentByObjectID(id), HttpStatus.OK);
@@ -56,13 +59,18 @@ public class StudentController {
         return new ResponseEntity<Optional<Student>>(studentService.getStudentByFirstName(firstName), HttpStatus.OK);
     }
 
+
     @PutMapping
     public Student modifyStudent(@RequestBody Student student) {
         return studentService.updateStudent(student);
     }
 
+
+
     @DeleteMapping("/{id}")
     public String deleteStudent(@PathVariable ObjectId id) {
         return studentService.deleteStudent(id);
     }
+
+    
 }

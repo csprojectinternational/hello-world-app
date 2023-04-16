@@ -15,25 +15,11 @@ public class StudentService {
     
     //CRUD testing
 
-    //create?
+    //create
 
-    public void addStudent(Student student) {
-        if (student.getId() == null) {
-            String idString = UUID.randomUUID().toString().split("-")[0];
-            ObjectId id = new ObjectId(idString);
-            student.setId(id);
-        }
-
-        student.setFirstName("John");
-        student.setLastName("Doe");
-        student.setBand("Symphonic");
-        student.setCurrentlyInLessons(false);
-        student.setPassword("ieat203");
-        student.setInstrument("Trumpet");
-        student.setGrade(7);
-        student.setKisdID("V1929302");
-
-        studentRepository.save(student);
+    
+    public Student addStudent(Student student) {
+        return studentRepository.save(student);
     }
     
     //read
@@ -41,8 +27,6 @@ public class StudentService {
     public List<Student> findAllStudents() {
         return studentRepository.findAll();
     }
-
-    //two methods that appear to achieve the same purpose but from different videos, not sure which is better
     public Optional<Student> getStudentByObjectID(ObjectId id) {
         return studentRepository.findById(id);
     }

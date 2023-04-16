@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,28 +22,17 @@ public class Student {
     private String band;
     private String firstName;
     private String lastName;
+    private String phoneNumber;
     private String instrument;
     private String kisdID;
     private String password;
     private String settingPreference;
     private boolean currentlyInLessons;
     private int grade;
+    private String currentTutor;
 
-    /* INSTRUMENTS:
-    "Flute",
-    "Clarinet",
-    "Bass Clarinet",
-    "Alto Saxophone",
-    "Tenor Saxophone",
-    "Bassoon",
-    "Oboe",
-    "Trumpet",
-    "Trombone",
-    "French Horn",
-    "Baritone/Euphonium",
-    "Tuba",
-    "Percussion"
-    */
+    public static ArrayList<Student> allStudents = new ArrayList<>();
+    private static ArrayList<Student> waitingListMaster = new ArrayList<>();
 
     public static final String[] woodwinds = { //Broader subcategory
         "Flute",
@@ -73,8 +61,5 @@ public class Student {
         "Clarinet",
         "Bass Clarinet"
     };
-
-
-    private static ArrayList<Student> waitingListMaster = new ArrayList<>();
 
 }
