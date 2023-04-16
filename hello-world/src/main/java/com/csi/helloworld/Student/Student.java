@@ -1,5 +1,7 @@
 package com.csi.helloworld.Student;
 
+import java.util.ArrayList;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -28,114 +30,51 @@ public class Student {
     private boolean currentlyInLessons;
     private int grade;
 
-    // getter and setter methods for id
-    @Field("_id")
-    public ObjectId getId() {
-        return id;
-    }
+    /* INSTRUMENTS:
+    "Flute",
+    "Clarinet",
+    "Bass Clarinet",
+    "Alto Saxophone",
+    "Tenor Saxophone",
+    "Bassoon",
+    "Oboe",
+    "Trumpet",
+    "Trombone",
+    "French Horn",
+    "Baritone/Euphonium",
+    "Tuba",
+    "Percussion"
+    */
 
-    @Field("_id")
-    public void setId(ObjectId id) {
-        this.id = id;
-    }
+    public static final String[] woodwinds = { //Broader subcategory
+        "Flute",
+        "Clarinet",
+        "Bass Clarinet",
+        "Alto Saxophone",
+        "Tenor Saxophone",
+        "Bassoon",
+        "Oboe"
+    };
 
-    // getter and setter methods for band
-    @Field("band")
-    public String getBand() {
-        return band;
-    }
+    public static final String[] brass = { //Broader subcategory
+        "Trumpet",
+        "Trombone",
+        "French Horn",
+        "Baritone/Euphonium",
+        "Tuba"
+    };
 
-    @Field("band")
-    public void setBand(String band) {
-        this.band = band;
-    }
+    public static final String[] saxophones = { //Smaller subcategory
+        "Alto Saxophone",
+        "Tenor Saxophone"
+    };
 
-    // getter and setter methods for firstName
-    @Field("firstName")
-    public String getFirstName() {
-        return firstName;
-    }
+    public static final String[] clarinets = { //Smaller subcategory
+        "Clarinet",
+        "Bass Clarinet"
+    };
 
-    @Field("firstName")
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 
-    // getter and setter methods for lastName
-    @Field("lastName")
-    public String getLastName() {
-        return lastName;
-    }
-
-    @Field("lastName")
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    // getter and setter methods for instrument
-    @Field("instrument")
-    public String getInstrument() {
-        return instrument;
-    }
-
-    @Field("instrument")
-    public void setInstrument(String instrument) {
-        this.instrument = instrument;
-    }
-
-    // getter and setter methods for kisdID
-    @Field("kisdID")
-    public String getKisdID() {
-        return kisdID;
-    }
-
-    @Field("kisdID")
-    public void setKisdID(String kisdID) {
-        this.kisdID = kisdID;
-    }
-
-    // getter and setter methods for password
-    @Field("password")
-    public String getPassword() {
-        return password;
-    }
-
-    @Field("password")
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    // getter and setter methods for settingPreference
-    @Field("settingPreference")
-    public String getSettingPreference() {
-        return settingPreference;
-    }
-
-    @Field("settingPreference")
-    public void setSettingPreference(String settingPreference) {
-        this.settingPreference = settingPreference;
-    }
-
-    // getter and setter methods for currentlyInLessons
-    @Field("currentlyInLessons")
-    public boolean isCurrentlyInLessons() {
-        return currentlyInLessons;
-    }
-
-    @Field("currentlyInLessons")
-    public void setCurrentlyInLessons(boolean currentlyInLessons) {
-        this.currentlyInLessons = currentlyInLessons;
-    }
-
-    // getter and setter methods for grade
-    @Field("grade")
-    public int getGrade() {
-        return grade;
-    }
-
-    @Field("grade")
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
+    private static ArrayList<Student> waitingListMaster = new ArrayList<>();
 
 }
