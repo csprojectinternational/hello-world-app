@@ -47,6 +47,14 @@
 			<artifactId>spring-dotenv</artifactId>
 			<version>2.5.4</version>
 		</dependency>
+		
+		<dependency> //mk
+    	<groupId>org.mongodb</groupId> //mk
+   		<artifactId>mongo-java-driver</artifactId> //mk
+    	<version>3.12.7</version> //mk
+		</dependency> //mk
+
+
 	</dependencies>
 
 	<build>
