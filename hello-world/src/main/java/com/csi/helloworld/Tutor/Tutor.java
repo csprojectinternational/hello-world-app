@@ -1,6 +1,9 @@
 package com.csi.helloworld.Tutor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -34,16 +37,17 @@ public class Tutor {
     //private int distinctionScore;
     private int grade;
 
+    public static ArrayList<Tutor> allTutors = new ArrayList<>();
+
     private ArrayList<Student> scheduledStudents = new ArrayList<>();
 
+    private ArrayList<Student> tutorWaitingList;
 
-
-
-    public static ArrayList<Student> tutorWaitingList(Tutor tutor) {
+    public static void tutorWaitingList(Tutor tutor) {
         ArrayList<Student> waitingList = new ArrayList<>();
     
         for (Student student : Student.waitingListMaster) {
-            if (student.playsSameOrSimilarInstrument(tutor.instrument)) {
+            if (student.playsSameOrSimilarInstrument(tutor)) {
                 waitingList.add(student);
             }
         }
@@ -57,94 +61,74 @@ public class Tutor {
             }
         });
     
-        return waitingList;
+        tutor.setTutorWaitingList(waitingList);
     }
     
     private static int calculateTeachingPriorityScore(Student student, Tutor tutor) {
+        
         int score = 0;
     
         int gradeLevel = student.getGrade();
         if (gradeLevel == 6) {
             score += 0;
-        } else if (gradeLevel == 7) {
+        } 
+        else if (gradeLevel == 7) {
             score += 1;
-        } else if (gradeLevel == 8) {
+        } 
+        else if (gradeLevel == 8) {
             score += 3;
         }
     
         String bandLevel = student.getBand();
-        if (bandLevel.equals(Beginner)) {
+
+        if (bandLevel.equals("Beginner")) {
             score += 0;
-        } else if (bandLevel.equals(Lyric)) {
+        } 
+        else if (bandLevel.equals("Lyric")) {
             score += 0;
-        } else if (bandLevel.equals(Concert)) {
+        } 
+        else if (bandLevel.equals("Concert")) {
             score += 1;
-        } else if (bandLevel.equals(Symphonic)) {
+        } 
+        else if (bandLevel.equals("Symphonic")) {
             score += 3;
         }
     
-        if (student.getCurrentlyInLessons()) {
+        if (student.isCurrentlyInLessons()) {
             score += 4;
-        } else {
+        } 
+        else {
             score += 0;
         }
     
         String studentInstrument = student.getInstrument();
         String tutorInstrument = tutor.getInstrument();
         
-    if (studentInstrument.equals(tutorInstrument)) {
-        score += 0;
-    }
+        if (studentInstrument.equals(tutorInstrument)) {
+            score += 0;
+        }
     
+        else if (Arrays.asList(Student.saxophones).contains(studentInstrument) && Arrays.asList(Student.saxophones).contains(tutorInstrument)) {
+            score += 3;
+        }
     
-    else if (Arrays.asList(Student.saxophones).contains(studentInstrument) && Arrays.asList(Student.saxophones).contains(tutorInstrument)) {
-        score += 3;
-    }
+        else if (Arrays.asList(Student.clarinets).contains(studentInstrument) && Arrays.asList(Student.clarinets).contains(tutorInstrument)) {
+            score += 3;
+        }
     
+        else if (Arrays.asList(Student.woodwinds).contains(studentInstrument) && Arrays.asList(Student.woodwinds).contains(tutorInstrument)) {
+            score += 10;
+        }
     
-    else if (Arrays.asList(Student.clarinets).contains(studentInstrument) && Arrays.asList(Student.clarinets).contains(tutorInstrument)) {
-        score += 3;
-    }
+        else if (Arrays.asList(Student.brass).contains(studentInstrument) && Arrays.asList(Student.brass).contains(tutorInstrument)) {
+            score += 10;
+        }
     
-    
-    else if (Arrays.asList(Student.woodwinds).contains(studentInstrument) && Arrays.asList(Student.woodwinds).contains(tutorInstrument)) {
-        score += 10;
-    }
-    
-    
-    else if (Arrays.asList(Student.brass).contains(studentInstrument) && Arrays.asList(Student.brass).contains(tutorInstrument)) {
-        score += 10;
-    }
-    
-    
-    else {
-        score += 25;
-    }
+        else {
+            score += 25;
+        }
         
         return score;
-    }
-    
-    public boolean playsSameOrSimilarInstrument(Tutor tutor) {
-        if (this.instrument.equals(tutor.getInstrument())) {
-            return true;
-        } else if (Arrays.asList(Student.woodwinds).contains(tutor.getInstrument())) {
-            if (Arrays.asList(Student.woodwinds).contains(this.instrument)) {
-                return true;
-            } else if (tutor.getInstrument().equals("Alto Saxophone") || tutor.getInstrument().equals("Tenor Saxophone")) {
-                if (Arrays.asList(Student.saxophones).contains(this.instrument)) {
-                    return true;
-                }
-            } else if (tutor.getInstrument().equals("Clarinet") || tutor.getInstrument().equals("Bass Clarinet")) {
-                if (Arrays.asList(Student.clarinets).contains(this.instrument)) {
-                    return true;
-                }
-            } else if (Arrays.asList(Student.brass).contains(tutor.getInstrument())) {
-                if (Arrays.asList(Student.brass).contains(this.instrument)) {
-                    return true;
-                }
-            }
-        }
-        return false;
     }
     
 
@@ -153,20 +137,21 @@ public class Tutor {
             return;
         }
     
-        Student.removeFromAllWaitingLists(student);
+        removeFromAllWaitingLists(student);
     
         this.scheduledStudents.add(student);
         student.setCurrentTutor(this.getKisdID());
     }
+    
     public static void removeFromAllWaitingLists(Student student) {
     
         if (Student.waitingListMaster.contains(student)) {
             Student.waitingListMaster.remove(student);
         }
     
-        for (Tutor tutor : Tutor.tutors) {
-            if (tutor.waitingList.contains(student)) {
-                tutor.waitingList.remove(student);
+        for (Tutor tutor : Tutor.allTutors) {
+            if (tutor.tutorWaitingList.contains(student)) {
+                tutor.tutorWaitingList.remove(student);
             }
         }
     }
