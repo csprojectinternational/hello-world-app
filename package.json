@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@mui/x-data-grid": "^6.2.0"
+    "@mui/x-data-grid": "^6.2.0",
+    "ngrok": "^4.3.3"
   }
 }
