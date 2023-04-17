@@ -1,5 +1,6 @@
 package com.csi.helloworld.Student;
 
+import java.util.ArrayList;
 import java.util.List;
 //import java.util.Optional;
 import java.util.Optional;
@@ -60,9 +61,9 @@ public class StudentController {
     }
 
 
-    @PutMapping
-    public Student modifyStudent(@RequestBody Student student) {
-        return studentService.updateCurrentTutor(student);
+    @PutMapping("/connectStudent/{kisdID}") // <- student kisdID
+    public void connectLesson(@PathVariable String kisdID) {
+        studentService.updateCurrentTutor(student);
     }
 
 

@@ -1,5 +1,6 @@
 package com.csi.helloworld.Tutor;
 
+import java.util.ArrayList;
 import java.util.List;
 //import java.util.Optional;
 import java.util.Optional;
@@ -20,6 +21,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 //import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.csi.helloworld.Student.Student;
+import com.csi.helloworld.Student.StudentService;
+
 
 @RestController
 @RequestMapping("api/v1/tutors")
@@ -27,8 +31,7 @@ public class TutorController {
 
     @Autowired
     private TutorService tutorService;
-
-
+    private StudentService studentService;
 
     @PostMapping("/newTutor")
     //@ResponseStatus(HttpStatus.CREATED)
@@ -40,8 +43,18 @@ public class TutorController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Tutor>> getAllTutors() {
-        //return tutorService.findAllTutors();
         return new ResponseEntity<List<Tutor>>(tutorService.findAllTutors(), HttpStatus.OK);
+    }
+
+    @GetMapping("/tutorWaitingList/{kisdID}")
+    public ArrayList<Student> getTutorWaitingList(String kisdID) {
+        ArrayList<Student> waitingListMaster = new ArrayList<>();
+        for (int i = 0; i < studentService.findAllStudents().size(); i++) {
+            if (!studentService.findAllStudents().get(i).getCurrentTutor().equals(null)) {
+                waitingListMaster.add(studentService.findAllStudents().get(i));
+            }
+        }
+        return Tutor.tutorWaitingList(tutorService.getTutorByKisdID(kisdID).get(), waitingListMaster);        
     }
     
     @GetMapping("/id/{id}")

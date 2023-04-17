@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Optional;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -37,16 +38,10 @@ public class Tutor {
     //private int distinctionScore;
     private int grade;
 
-    public static ArrayList<Tutor> allTutors = new ArrayList<>();
-
-    private ArrayList<Student> scheduledStudents = new ArrayList<>();
-
-    private ArrayList<Student> tutorWaitingList;
-
-    public static void tutorWaitingList(Tutor tutor) {
+    public static ArrayList<Student> tutorWaitingList(Tutor tutor, ArrayList<Student> waitingListMaster) {
         ArrayList<Student> waitingList = new ArrayList<>();
     
-        for (Student student : Student.waitingListMaster) {
+        for (Student student : waitingListMaster) {
             if (student.playsSameOrSimilarInstrument(tutor)) {
                 waitingList.add(student);
             }
@@ -61,7 +56,7 @@ public class Tutor {
             }
         });
     
-        tutor.setTutorWaitingList(waitingList);
+        return waitingList;
     }
     
     private static int calculateTeachingPriorityScore(Student student, Tutor tutor) {
@@ -129,31 +124,6 @@ public class Tutor {
         }
         
         return score;
-    }
-    
-
-    public void scheduleLesson(Student student) {
-        if (this.scheduledStudents.contains(student)) {
-            return;
-        }
-    
-        removeFromAllWaitingLists(student);
-    
-        this.scheduledStudents.add(student);
-        student.setCurrentTutor(this.getKisdID());
-    }
-    
-    public static void removeFromAllWaitingLists(Student student) {
-    
-        if (Student.waitingListMaster.contains(student)) {
-            Student.waitingListMaster.remove(student);
-        }
-    
-        for (Tutor tutor : Tutor.allTutors) {
-            if (tutor.tutorWaitingList.contains(student)) {
-                tutor.tutorWaitingList.remove(student);
-            }
-        }
     }
     
 }

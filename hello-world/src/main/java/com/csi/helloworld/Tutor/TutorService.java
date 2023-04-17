@@ -8,6 +8,8 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.csi.helloworld.Student.Student;
+
 @Service
 public class TutorService {
     @Autowired
@@ -37,17 +39,6 @@ public class TutorService {
     public Optional<Tutor> getTutorByKisdID(String kisdID) {
         return tutorRepository.findTutorByKisdID(kisdID);
     }
-
-    //update (template, redo later)
-
-   /*public Tutor updateCurrentTutor(Tutor tutorRequest) {
-        //get the existing document from DB
-        //populate new kisdID from request to existing object/entity/document
-        Tutor existingTutor = tutorRepository.findById(tutorRequest.getId()).get();
-        existingTutor.setCurrentTutor(tutorRequest.getCurrentTutor());
-        
-        return tutorRepository.save(existingTutor);
-    }*/
 
     //delete
 

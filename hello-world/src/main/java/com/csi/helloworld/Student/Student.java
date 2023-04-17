@@ -36,9 +36,6 @@ public class Student {
     private int grade;
     private String currentTutor;
 
-    public static ArrayList<Student> allStudents = new ArrayList<>();
-    public static ArrayList<Student> waitingListMaster = new ArrayList<>();
-
     public static final String[] woodwinds = { //Broader subcategory
         "Flute",
         "Clarinet",
@@ -67,6 +64,9 @@ public class Student {
         "Bass Clarinet"
     };
 
+    public void scheduleLesson(Student student, Tutor tutor) {
+        student.setCurrentTutor(tutor.getKisdID());
+    }
 
     public boolean playsSameOrSimilarInstrument(Tutor tutor) {
         

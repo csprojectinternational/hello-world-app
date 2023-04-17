@@ -16,5 +16,6 @@ public interface TutorRepository extends MongoRepository<Tutor, ObjectId> {
     Optional<Tutor> findTutorByKisdID(String kisdID);
 
     Optional<Tutor> deleteTutorByKisdID(String kisdID);
+    Optional<Tutor> updateCurrentTutor(Tutor tutor);
 
 }
