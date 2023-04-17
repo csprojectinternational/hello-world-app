@@ -1,10 +1,13 @@
 package com.csi.helloworld.Student;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.csi.helloworld.Tutor.Tutor;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,7 +37,7 @@ public class Student {
     private String currentTutor;
 
     public static ArrayList<Student> allStudents = new ArrayList<>();
-    private static ArrayList<Student> waitingListMaster = new ArrayList<>();
+    public static ArrayList<Student> waitingListMaster = new ArrayList<>();
 
     public static final String[] woodwinds = { //Broader subcategory
         "Flute",
@@ -64,4 +67,38 @@ public class Student {
         "Bass Clarinet"
     };
 
+
+    public boolean playsSameOrSimilarInstrument(Tutor tutor) {
+        
+        if (this.instrument.equals(tutor.getInstrument())) {
+            return true;
+        } 
+        
+        else if (Arrays.asList(Student.woodwinds).contains(tutor.getInstrument())) {
+            
+            if (Arrays.asList(Student.woodwinds).contains(this.instrument)) {
+                return true;
+            } 
+            
+            else if (tutor.getInstrument().equals("Alto Saxophone") || tutor.getInstrument().equals("Tenor Saxophone")) {
+                if (Arrays.asList(Student.saxophones).contains(this.instrument)) {
+                    return true;
+                }
+            } 
+            
+            else if (tutor.getInstrument().equals("Clarinet") || tutor.getInstrument().equals("Bass Clarinet")) {
+                if (Arrays.asList(Student.clarinets).contains(this.instrument)) {
+                    return true;
+                }
+            } 
+            
+            else if (Arrays.asList(Student.brass).contains(tutor.getInstrument())) {
+                if (Arrays.asList(Student.brass).contains(this.instrument)) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
 }
