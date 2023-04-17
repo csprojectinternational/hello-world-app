@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import TextField from '@mui/material/TextField'
 import { Stack, Typography, MenuItem, Select, InputLabel, FormControl } from '@mui/material';
 import './Register.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Background from '../../components/Background/Background';
 import YellowButton from '../../components/YellowButton/YellowButton';
 import api from '../../api/axiosConfig';
@@ -12,11 +12,12 @@ import BackButton from '../../components/BackButton/BackButton';
 
 // TODO:
 
-// login page
 // no duplicate students: check id, email, phone number
-// students: receive thanks page
-// tutors: dashboard
 // better onboarding page
+
+// build dashboard
+// build connect confirmed
+// handle on catch in dashboard
 
 const Register = ({ isStudent }) => {
 
@@ -55,6 +56,8 @@ const Register = ({ isStudent }) => {
   const settingPreferences = ["No Preference", "In-Person", "Virtual"];
   const studentCommunicationPreferences = ["No Preference", "Phone", "Email"];
   const noYes = ["No", "Yes"];
+
+  const navigate = useNavigate();
 
   const [students, setStudents] = useState();
 
@@ -413,6 +416,7 @@ const Register = ({ isStudent }) => {
                 grade: collectedData.learningGrade,
                 currentTutor: null
               });
+              navigate('/thanks');
             } else {
               api.post('/api/v1/tutors/newTutor', {
                 band: collectedData.teachingBand,
@@ -427,6 +431,7 @@ const Register = ({ isStudent }) => {
                 grade: collectedData.teachingGrade,
                 scheduledStudents: []
               });
+              navigate('/dashboard', {state: {id: newID, password: collectedData.password}});
             }
             setErrorMessage("");
           } catch (e) {

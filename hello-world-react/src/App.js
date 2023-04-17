@@ -20,6 +20,7 @@ import ErrorPage from './pages/ErrorPage/ErrorPage';
 import NavBar from './components/NavBar/NavBar';
 import { grey, red } from '@mui/material/colors';
 import Login from './pages/Login/Login';
+import Thanks from './pages/Thanks/Thanks';
 
 // ROOT
 // contains router and mui styling default theme
@@ -60,7 +61,8 @@ function App() {
             <Route exact path="/register-student" element={<Register isStudent={true}/>} />
             <Route exact path="/register-tutor" element={<Register isStudent={false}/>} />
             <Route exact path="/login" element={<Login />} />
-            <Route exact path="/dashboard/" element={<Dashboard />} />
+            <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/thanks" element={<Thanks />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>

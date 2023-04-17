@@ -18,7 +18,7 @@ const NavBar = ({ showSignIn=true }) => {
           TIE-D TOGETHER
         </Typography>
         {showSignIn && <Link to="/login" sx={{height: 0}}>
-          <YellowButton style={{ position: 'absolute', right: '1rem', fontSize: 'min(3vmin, 1rem)', height: '2rem', top: '1rem' }}>Tutor Log In</YellowButton>
+          <YellowButton style={{ position: 'absolute', right: '1rem', fontSize: 'min(3vmin, 1rem)', height: '2rem', top: '2.5vmin' }}>Tutor Log In</YellowButton>
         </Link>}
       </Toolbar>
     </AppBar>
