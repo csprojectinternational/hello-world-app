@@ -2,7 +2,6 @@ package com.csi.helloworld.Student;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class StudentService {
         return studentRepository.findStudentByKisdID(kisdID);
     }
 
-    //update (template, redo later)
+    //update
 
     public Student updateCurrentTutor(Student studentRequest) {
         //get the existing document from DB

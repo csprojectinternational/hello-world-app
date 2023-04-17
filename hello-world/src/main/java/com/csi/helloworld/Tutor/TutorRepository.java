@@ -1,6 +1,5 @@
 package com.csi.helloworld.Tutor;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.bson.types.ObjectId;
@@ -16,6 +15,5 @@ public interface TutorRepository extends MongoRepository<Tutor, ObjectId> {
     Optional<Tutor> findTutorByKisdID(String kisdID);
 
     Optional<Tutor> deleteTutorByKisdID(String kisdID);
-    Optional<Tutor> updateCurrentTutor(Tutor tutor);
 
 }

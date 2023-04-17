@@ -1,6 +1,5 @@
 package com.csi.helloworld.Student;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.bson.types.ObjectId;
@@ -64,8 +63,9 @@ public class Student {
         "Bass Clarinet"
     };
 
-    public void scheduleLesson(Student student, Tutor tutor) {
-        student.setCurrentTutor(tutor.getKisdID());
+    public Student scheduleLesson(String KisdID) {
+        this.setCurrentTutor(KisdID);
+        return this;
     }
 
     public boolean playsSameOrSimilarInstrument(Tutor tutor) {

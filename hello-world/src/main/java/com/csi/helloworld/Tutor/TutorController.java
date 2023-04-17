@@ -9,15 +9,13 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+//import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 //import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,6 +55,17 @@ public class TutorController {
         return Tutor.tutorWaitingList(tutorService.getTutorByKisdID(kisdID).get(), waitingListMaster);        
     }
     
+    @GetMapping("/scheduledStudents/{kisdID}")
+    public ArrayList<Student> getTutorScheduledStudents(String kisdID) {
+        ArrayList<Student> scheduledStudents = new ArrayList<>();
+        for (int i = 0; i < studentService.findAllStudents().size(); i++) {
+            if (studentService.findAllStudents().get(i).getCurrentTutor().equals(kisdID)) {
+                scheduledStudents.add(studentService.findAllStudents().get(i));
+            }
+        }
+        return scheduledStudents;        
+    }
+
     @GetMapping("/id/{id}")
     public ResponseEntity<Optional<Tutor>> getTutorByObjectID(@PathVariable ObjectId id) {
         return new ResponseEntity<Optional<Tutor>>(tutorService.getTutorByObjectID(id), HttpStatus.OK);
