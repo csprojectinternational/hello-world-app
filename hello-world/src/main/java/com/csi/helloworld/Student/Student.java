@@ -1,6 +1,5 @@
 package com.csi.helloworld.Student;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import org.bson.types.ObjectId;
@@ -36,9 +35,6 @@ public class Student {
     private int grade;
     private String currentTutor;
 
-    public static ArrayList<Student> allStudents = new ArrayList<>();
-    public static ArrayList<Student> waitingListMaster = new ArrayList<>();
-
     public static final String[] woodwinds = { //Broader subcategory
         "Flute",
         "Clarinet",
@@ -67,6 +63,10 @@ public class Student {
         "Bass Clarinet"
     };
 
+    public Student scheduleLesson(String KisdID) {
+        this.setCurrentTutor(KisdID);
+        return this;
+    }
 
     public boolean playsSameOrSimilarInstrument(Tutor tutor) {
         
