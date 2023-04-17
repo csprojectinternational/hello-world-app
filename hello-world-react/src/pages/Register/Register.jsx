@@ -7,15 +7,15 @@ import Background from '../../components/Background/Background';
 import YellowButton from '../../components/YellowButton/YellowButton';
 import api from '../../api/axiosConfig';
 import useEffectAfterMount from '../../hooks/useEffectAfterMount';
+import NavBar from '../../components/NavBar/NavBar';
+import BackButton from '../../components/BackButton/BackButton';
 
 // TODO:
 
-// make error messages, remove all alerts
-// implement mandatory fields, collect fields from outset
-
+// login page
+// no duplicate students: check id, email, phone number
 // students: receive thanks page
-// tutors: pick a student page
-
+// tutors: dashboard
 // better onboarding page
 
 const Register = ({ isStudent }) => {
@@ -103,9 +103,8 @@ const Register = ({ isStudent }) => {
 
   return (
     <Background style={{position: "relative"}}>
-      <Link to="/" style={{textDecoration: "none", position: "absolute", left: "20px", top: "20px"}}>
-        <YellowButton>BACK</YellowButton>
-      </Link>
+      <NavBar />
+      <BackButton />
       <Stack spacing={3} className="stack" sx={{margin: 0, padding: '20vmin'}}>
         <Typography variant="h4" color="initial" sx={{fontWeight: "bold"}}>
           SIGN UP AS A {isStudent ? "STUDENT" : "TUTOR"}
@@ -435,8 +434,6 @@ const Register = ({ isStudent }) => {
             setErrorMessage("A server error occured. Please try again later!");
             console.log(e.message);
           }
-
-          getStudents();
 
         }}>Submit</YellowButton>
 

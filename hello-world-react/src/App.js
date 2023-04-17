@@ -19,6 +19,7 @@ import ErrorPage from './pages/ErrorPage/ErrorPage';
 // navbar
 import NavBar from './components/NavBar/NavBar';
 import { grey, red } from '@mui/material/colors';
+import Login from './pages/Login/Login';
 
 // ROOT
 // contains router and mui styling default theme
@@ -54,12 +55,12 @@ function App() {
     <div className="App">
       <ThemeProvider theme={primaryTheme}>
         <BrowserRouter>
-          <NavBar />
           <Routes>
             <Route exact path="/" element={<Onboarding />} />
             <Route exact path="/register-student" element={<Register isStudent={true}/>} />
             <Route exact path="/register-tutor" element={<Register isStudent={false}/>} />
-            <Route exact path="/dashboard" element={<Dashboard />} />
+            <Route exact path="/login" element={<Login />} />
+            <Route path="/dashboard/:id" element={<Dashboard />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>
