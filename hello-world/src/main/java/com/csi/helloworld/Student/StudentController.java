@@ -58,11 +58,10 @@ public class StudentController {
     }
 
 
-    @PutMapping("/connectStudent/{tutorKisdID}/{studentKisdID}")
-    public String connectLesson(@PathVariable String TutorKisdID, @PathVariable String StudentKisdID) {
-        Student updatedStudent = studentService.getStudentByKisdID(StudentKisdID).get().scheduleLesson(TutorKisdID);
+    @GetMapping("/connectStudent/{tutorKisdID}/{studentKisdID}") //CHANGED FROM PUT
+    public void connectLesson(@PathVariable String tutorKisdID, @PathVariable String studentKisdID) {
+        Student updatedStudent = studentService.getStudentByKisdID(studentKisdID).get().scheduleLesson(tutorKisdID);
         studentService.updateCurrentTutor(updatedStudent);
-        return "success";
     }
 
 
