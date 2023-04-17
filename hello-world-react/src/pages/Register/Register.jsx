@@ -14,10 +14,11 @@ import BackButton from '../../components/BackButton/BackButton';
 
 // no duplicate students: check id, email, phone number
 // better onboarding page
-
-// build dashboard
+// connect button on dashboard
+// use dashboard-dedicated endpoints
 // build connect confirmed
 // handle on catch in dashboard
+// remove console.logs
 
 const Register = ({ isStudent }) => {
 
