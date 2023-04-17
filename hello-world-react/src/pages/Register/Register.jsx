@@ -58,18 +58,17 @@ const Register = ({ isStudent }) => {
 
   const [students, setStudents] = useState();
 
-  const getStudents = async () => {
-    try {
-      const res = await api.get('/api/v1/students/all');
-      setStudents(res.data);
-    } catch (e) {
-      setErrorMessage("A server error occured. Please try again later!");
-      console.log(e);
+  useEffect(() => {
+    async function getData() {
+      try {
+        const res = await api.get('/api/v1/students/all');
+        setStudents(res.data);
+      } catch (e) {
+        setErrorMessage("A server error occured. Please try again later!");
+        console.log(e);
+      }
     }
-  }
-
-  useEffectAfterMount(() => {
-    getStudents();
+    getData();
   }, []);
 
   const [collectedData, setCollectedData] = useState({

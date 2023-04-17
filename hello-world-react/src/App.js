@@ -60,7 +60,7 @@ function App() {
             <Route exact path="/register-student" element={<Register isStudent={true}/>} />
             <Route exact path="/register-tutor" element={<Register isStudent={false}/>} />
             <Route exact path="/login" element={<Login />} />
-            <Route path="/dashboard/:id" element={<Dashboard />} />
+            <Route exact path="/dashboard/" element={<Dashboard />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>

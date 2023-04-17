@@ -69,18 +69,18 @@ const Login = () => {
           }
 
           try {
-            console.log(tutors)
             let loggedIn = false;
-            let id;
+            let userId, userPassword;
             tutors.forEach((tutor) => {
               if (tutor.kisdID == collectedData.id && tutor.password == collectedData.password) {
                 loggedIn = true;
-                id = tutor.kisdID;
+                userId = tutor.kisdID;
+                userPassword = tutor.password;
               }
             });
             if (loggedIn) {
               setErrorMessage("");
-              navigate(`/dashboard/${id}`);
+              navigate(`/dashboard`, {state: {id: userId, password: userPassword}});
             } else {
               setErrorMessage("Username or Password Incorrect.");
               return;
