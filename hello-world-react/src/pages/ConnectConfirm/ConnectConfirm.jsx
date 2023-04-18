@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Background from '../../components/Background/Background'
 import NavBar from '../../components/NavBar/NavBar'
-import { Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import YellowButton from '../../components/YellowButton/YellowButton'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Authenticate from '../Authenticate/Authenticate'
@@ -22,23 +22,27 @@ const ConnectConfirm = () => {
     <>
       <Authenticate location={location}>
         <TriggerOnRender func={doStudent}>
-          <Background />
-          <NavBar showSignIn={false}/>
-          {student && <div style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
-            <Typography variant="h4">You have successfully signed up for lessons with {student.name}!</Typography>
-            <Typography variant="h5">Grade: {student.grade}</Typography>
-            <Typography variant="h5">Band: {student.band}</Typography>
-            <Typography variant="h5">Instrument: {student.instrument}</Typography>
-            <Typography variant="h5">Setting Preference: {student.settingPreference}</Typography>
-            <Typography variant="h4">Reach out to them now:</Typography>
-            {student.communicationPreference != "Phone" && <Typography variant="h5">Email: {student.email}</Typography>}
-            {student.communicationPreference != "Email" && <Typography variant="h5">Phone: {student.phone}</Typography>}
-            <Typography variant="h4">If you have any other questions, please contact <em style={{fontWeight: 'strong'}}>tiedtogether.connect@gmail.com</em>.</Typography>
-            <YellowButton onClick={() => {
-              // pass auth credentials back
-              navigate('/dashboard', {state: {id: location.state.id, password: location.state.password}});
-            }}>Find More Students</YellowButton>
-          </div>}
+          <Background style={{overflow: 'auto'}}>
+            <NavBar showSignIn={false}/>
+            {student && <Stack spacing={1} sx={{ margin: 'auto', padding: '12vmin' }}>
+              <Typography variant="h4" sx={{fontWeight: '900'}}>You have successfully signed up for lessons with {student.name}!</Typography>
+              <Typography variant="h5">Grade: {student.grade}</Typography>
+              <Typography variant="h5">Band: {student.band}</Typography>
+              <Typography variant="h5">Instrument: {student.instrument}</Typography>
+              <Typography variant="h5">Setting Preference: {student.settingPreference}</Typography>
+              <br /><Typography variant="h5" sx={{fontWeight: '900'}}>Reach out to them now:</Typography>
+              {student.communicationPreference != "Phone" && <Typography variant="h5">Email: {student.email}</Typography>}
+              {student.communicationPreference != "Email" && <Typography variant="h5">Phone: {student.phone}</Typography>}
+              <br /><Typography variant="h5">If you have any other questions, please contact <em style={{fontWeight: '900', overflowWrap: 'break-word'}}>tiedtogether.connect@gmail.com</em></Typography>
+              <br />
+              <div style={{display: 'flex', justifyContent: 'center'}}>
+                <YellowButton onClick={() => {
+                  // pass auth credentials back
+                  navigate('/dashboard', {state: {id: location.state.id, password: location.state.password}});
+                }} style={{width: '40vw'}}>Find More Students</YellowButton>
+              </div>
+            </Stack>}
+          </Background>
         </TriggerOnRender>
       </Authenticate>
     </>

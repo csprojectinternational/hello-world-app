@@ -36,8 +36,8 @@ const Dashboard = () => {
           instrument: student.instrument,
           grade: student.grade,
           band: student.band,
-          // email: student.email,
-          // phone: student.phoneNumber,
+          email: student.email,
+          phone: student.phoneNumber,
           communicationPreference: student.communicationPreference,
           settingPreference: student.settingPreference
         };
@@ -72,7 +72,7 @@ const Dashboard = () => {
           event.stopPropagation(); // dont select the row
           console.log(params.row.id)
           try {
-            api.put(`/api/v1/students/connectStudent/${location.state.id}/${params.row.id}`);
+            api.get(`/api/v1/students/connectStudent/${location.state.id}/${params.row.id}`);
             // pass auth credentials on
             navigate('/connect-confirm', {state: {id: location.state.id, password: location.state.password, student: params.row}});
           } catch (e) {
