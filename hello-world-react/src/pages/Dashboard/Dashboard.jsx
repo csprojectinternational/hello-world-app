@@ -73,7 +73,9 @@ const Dashboard = () => {
                       return <YellowButton onClick={(event) => {
                         event.stopPropagation(); // dont select the row
                         try {
+                          console.log(params.row)
                           api.get(`/api/v1/students/disconnectStudent/${location.state.id}/${params.row.id}`);
+                          params.row.name = "Removing...";
                           setReloadConnectedStudents(!reloadConnectedStudents); // trigger reload
                         } catch (e) {
                           console.log(e.message);
