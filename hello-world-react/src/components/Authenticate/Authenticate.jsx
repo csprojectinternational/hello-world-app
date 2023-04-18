@@ -19,6 +19,7 @@ const Authenticate = ({ children, location }) => {
         try {
           const res = await api.get('/api/v1/tutors/all');
           const tutors = res.data;
+          // console.log(location.state.id, location.state.password)
           tutors.forEach((tutor) => {
             if (tutor.kisdID == location.state.id && tutor.password == location.state.password) {
               setLoggedIn(true);
