@@ -64,6 +64,12 @@ public class StudentController {
         studentService.updateCurrentTutor(updatedStudent);
     }
 
+    @GetMapping("/disconnectStudent/{tutorKisdID}/{studentKisdID}") //CHANGED FROM PUT
+    public void disconnectLesson(@PathVariable String tutorKisdID, @PathVariable String studentKisdID) {
+        Student updatedStudent = studentService.getStudentByKisdID(studentKisdID).get().unscheduleLesson(tutorKisdID);
+        studentService.updateCurrentTutor(updatedStudent);
+    }
+
 
     @DeleteMapping("/{kisdID}")
     public String deleteStudent(@PathVariable String kisdID) {
