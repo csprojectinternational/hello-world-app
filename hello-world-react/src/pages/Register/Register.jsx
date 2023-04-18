@@ -17,8 +17,6 @@ import BackButton from '../../components/BackButton/BackButton';
 // change settings
 // sign in for students, so they too can disconnect from lessons
 
-// handle on catch in dashboard
-// remove console.logs, esp. in dashboard
 // deploy
 
 const Register = ({ isStudent }) => {
