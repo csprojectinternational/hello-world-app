@@ -80,27 +80,14 @@ public class Student {
         } 
         
         else if (Arrays.asList(Student.woodwinds).contains(tutor.getInstrument())) {
-            
             if (Arrays.asList(Student.woodwinds).contains(this.instrument)) {
                 return true;
             } 
-            
-            else if (tutor.getInstrument().equals("Alto Saxophone") || tutor.getInstrument().equals("Tenor Saxophone")) {
-                if (Arrays.asList(Student.saxophones).contains(this.instrument)) {
-                    return true;
-                }
-            } 
-            
-            else if (tutor.getInstrument().equals("Clarinet") || tutor.getInstrument().equals("Bass Clarinet")) {
-                if (Arrays.asList(Student.clarinets).contains(this.instrument)) {
-                    return true;
-                }
-            } 
-            
-            else if (Arrays.asList(Student.brass).contains(tutor.getInstrument())) {
-                if (Arrays.asList(Student.brass).contains(this.instrument)) {
-                    return true;
-                }
+        }
+
+        else if (Arrays.asList(Student.brass).contains(tutor.getInstrument())) {
+            if (Arrays.asList(Student.brass).contains(this.instrument)) {
+                return true;
             }
         }
         
