@@ -23,6 +23,8 @@ const Dashboard = () => {
       const res = await api.get(`/api/v1/tutors/kisdID/${location.state.id}`);
       setTutorName(res.data.firstName + " " + res.data.lastName);
     } catch (e) {
+      setTutorName("WARNING: A server error occured. Functionality may be limited.")
+      setErrorMessage("A server error occured. Please try again later.");
       console.log(e);
     }
   }
@@ -32,6 +34,8 @@ const Dashboard = () => {
   }
 
   const [reloadConnectedStudents, setReloadConnectedStudents] = useState(false);
+
+  const [errorMessage, setErrorMessage] = useState("")
 
   return (
     <>
@@ -78,6 +82,7 @@ const Dashboard = () => {
                           params.row.name = "Removing...";
                           setReloadConnectedStudents(!reloadConnectedStudents); // trigger reload
                         } catch (e) {
+                          setErrorMessage("A server error occured. Please try again later.");
                           console.log(e.message);
                         }
                       }} style={{height: '2rem'}}>Disconnect</YellowButton>;
@@ -96,7 +101,9 @@ const Dashboard = () => {
                   { field: 'settingPreference', headerName: 'Setting Preference', minWidth: 250 },
                   
                 ]}
+                setErrorMessage={setErrorMessage}
               />
+              <Typography variant="subtitle1" sx={{color: 'red'}}>{errorMessage}</Typography>
               
               <br />
               <Typography variant="subtitle1" sx={{fontWeight: '900'}}>Connect With New Students</Typography>
@@ -131,6 +138,7 @@ const Dashboard = () => {
                           // pass auth credentials on
                           navigate('/connect-confirm', {state: {id: location.state.id, password: location.state.password, student: params.row}});
                         } catch (e) {
+                          setErrorMessage("A server error occured. Please try again later.");
                           console.log(e.message);
                         }
                       }} style={{height: '2rem'}}>Connect</YellowButton>;
@@ -149,6 +157,7 @@ const Dashboard = () => {
                   { field: 'settingPreference', headerName: 'Setting Preference', minWidth: 250 },
                   
                 ]}
+                setErrorMessage={setErrorMessage}
               />
 
             </Stack>

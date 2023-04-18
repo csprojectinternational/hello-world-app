@@ -5,7 +5,7 @@ import api from '../../api/axiosConfig';
 import './InfoGrid.css';
 import useEffectAfterMount from '../../hooks/useEffectAfterMount';
 
-const InfoGrid = ({ emptyMessage, reloadConnectedStudents, rowsEndpoint, rowsInfoToFetch, columns }) => {
+const InfoGrid = ({ emptyMessage, reloadConnectedStudents, rowsEndpoint, rowsInfoToFetch, columns, setErrorMessage }) => {
 
   const [checks, setChecks] = useState({});
   const [rows, setRows] = useState([]);
@@ -50,6 +50,7 @@ const InfoGrid = ({ emptyMessage, reloadConnectedStudents, rowsEndpoint, rowsInf
         setRows([...rows, ...Object.values(toAdd)]);
   
       } catch (e) {
+        setErrorMessage("A server error occured. Please try again later.");
         console.log(e);
       }
     }
