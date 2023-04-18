@@ -21,6 +21,7 @@ import NavBar from './components/NavBar/NavBar';
 import { grey, red } from '@mui/material/colors';
 import Login from './pages/Login/Login';
 import Thanks from './pages/Thanks/Thanks';
+import ConnectConfirm from './pages/ConnectConfirm/ConnectConfirm';
 
 // ROOT
 // contains router and mui styling default theme
@@ -63,6 +64,7 @@ function App() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/dashboard" element={<Dashboard />} />
             <Route exact path="/thanks" element={<Thanks />} />
+            <Route exact path="/connect-confirm" element={<ConnectConfirm />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>

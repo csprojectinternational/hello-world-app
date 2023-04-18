@@ -12,13 +12,15 @@ import BackButton from '../../components/BackButton/BackButton';
 
 // TODO:
 
+// dashboard error?
 // no duplicate students: check id, email, phone number
 // better onboarding page
-// connect button on dashboard
-// use dashboard-dedicated endpoints
+// connect button on dashboard, remove dashboard showing contact info
+// use dashboard-dedicated endpoints - make sure cors error is gone
 // build connect confirmed
 // handle on catch in dashboard
 // remove console.logs
+// deploy
 
 const Register = ({ isStudent }) => {
 
