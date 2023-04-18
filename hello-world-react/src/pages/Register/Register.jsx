@@ -12,12 +12,14 @@ import BackButton from '../../components/BackButton/BackButton';
 
 // TODO:
 
-// dashboard error?
 // no duplicate students: check id, email, phone number
 // better onboarding page
-// use dashboard-dedicated endpoints
+// change settings
+// sign in for students, so they too can disconnect from lessons
+
+// table with signed up tutors
 // handle on catch in dashboard
-// remove console.logs
+// remove console.logs, esp. in dashboard
 // deploy
 
 const Register = ({ isStudent }) => {

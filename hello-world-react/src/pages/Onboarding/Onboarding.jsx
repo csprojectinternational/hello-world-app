@@ -8,9 +8,11 @@ const Onboarding = () => {
   return (
     <Background>
       <NavBar />
-      <Stack spacing={3} sx={{ margin: 'auto', padding: '20vmin' }}>
+      <Stack spacing={3} sx={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: '60vw' }}>
         {/* <Typography variant="h3" sx={{fontStyle: 'italic', fontFamily: 'serif'}}>music tutoring made easy...</Typography> */}
         <OnboardingButton link="register-tutor" text="I want to be a tutor" />
+        <br />
+        <br />
         <OnboardingButton link="register-student" text="I want to be a student" />
       </Stack>
     </Background>
