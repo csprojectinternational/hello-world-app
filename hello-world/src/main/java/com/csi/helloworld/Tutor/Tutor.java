@@ -50,7 +50,7 @@ public class Tutor {
             public int compare(Student s1, Student s2) {
                 int score1 = calculateTeachingPriorityScore(s1, tutor);
                 int score2 = calculateTeachingPriorityScore(s2, tutor);
-                return score2 - score1;
+                return score1 - score2;
             }
         });
     

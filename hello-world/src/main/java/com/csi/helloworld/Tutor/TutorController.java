@@ -29,6 +29,7 @@ public class TutorController {
 
     @Autowired
     private TutorService tutorService;
+    @Autowired
     private StudentService studentService;
 
     @PostMapping("/newTutor")
@@ -45,21 +46,22 @@ public class TutorController {
     }
 
     @GetMapping("/tutorWaitingList/{kisdID}")
-    public ArrayList<Student> getTutorWaitingList(String kisdID) {
+    public ArrayList<Student> getTutorWaitingList(@PathVariable String kisdID) { //ArrayList<Student>
         ArrayList<Student> waitingListMaster = new ArrayList<>();
         for (int i = 0; i < studentService.findAllStudents().size(); i++) {
-            if (!studentService.findAllStudents().get(i).getCurrentTutor().equals(null)) {
+            if ((studentService.findAllStudents().get(i).getCurrentTutor() == null)) {
                 waitingListMaster.add(studentService.findAllStudents().get(i));
             }
         }
+        
         return Tutor.tutorWaitingList(tutorService.getTutorByKisdID(kisdID).get(), waitingListMaster);        
     }
     
     @GetMapping("/scheduledStudents/{kisdID}")
-    public ArrayList<Student> getTutorScheduledStudents(String kisdID) {
+    public ArrayList<Student> getTutorScheduledStudents(@PathVariable String kisdID) {
         ArrayList<Student> scheduledStudents = new ArrayList<>();
         for (int i = 0; i < studentService.findAllStudents().size(); i++) {
-            if (studentService.findAllStudents().get(i).getCurrentTutor().equals(kisdID)) {
+            if (!(studentService.findAllStudents().get(i).getCurrentTutor() == null) && studentService.findAllStudents().get(i).getCurrentTutor().equals(kisdID)) {
                 scheduledStudents.add(studentService.findAllStudents().get(i));
             }
         }
