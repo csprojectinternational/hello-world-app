@@ -7,7 +7,7 @@ import api from '../../api/axiosConfig';
 import { Button, Stack, Typography } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 import useEffectAfterMount from '../../hooks/useEffectAfterMount';
-import Authenticate from '../Authenticate/Authenticate';
+import Authenticate from '../../components/Authenticate/Authenticate';
 import TriggerOnRender from '../../components/TriggerOnRender/TriggerOnRender';
 import YellowButton from '../../components/YellowButton/YellowButton';
 
@@ -21,8 +21,8 @@ const Dashboard = () => {
 
   async function getRows() {
     try {
-      // const res = await api.get(`/api/v1/tutors/tutorWaitingList/${userId}`);
-      const res = await api.get('/api/v1/students/all');
+      const res = await api.get(`/api/v1/tutors/tutorWaitingList/${location.state.id}`);
+      // const res = await api.get('/api/v1/students/all');
       const students = res.data;
 
       let toAdd = {};

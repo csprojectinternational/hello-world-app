@@ -4,7 +4,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import { Stack, Typography } from '@mui/material'
 import YellowButton from '../../components/YellowButton/YellowButton'
 import { useLocation, useNavigate } from 'react-router-dom'
-import Authenticate from '../Authenticate/Authenticate'
+import Authenticate from '../../components/Authenticate/Authenticate'
 import TriggerOnRender from '../../components/TriggerOnRender/TriggerOnRender'
 
 const ConnectConfirm = () => {
@@ -25,7 +25,7 @@ const ConnectConfirm = () => {
           <Background style={{overflow: 'auto'}}>
             <NavBar showSignIn={false}/>
             {student && <Stack spacing={1} sx={{ margin: 'auto', padding: '12vmin' }}>
-              <Typography variant="h4" sx={{fontWeight: '900'}}>You have successfully signed up for lessons with {student.name}!</Typography>
+              <Typography variant="h4" sx={{fontWeight: '900'}}>You have successfully connected for lessons with {student.name}!</Typography>
               <Typography variant="h5">Grade: {student.grade}</Typography>
               <Typography variant="h5">Band: {student.band}</Typography>
               <Typography variant="h5">Instrument: {student.instrument}</Typography>
