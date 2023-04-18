@@ -416,7 +416,7 @@ const Register = ({ isStudent }) => {
                 grade: collectedData.learningGrade,
                 currentTutor: null
               });
-              navigate('/thanks');
+              navigate('/hello-world-app/thanks');
             } else {
               api.post('/api/v1/tutors/newTutor', {
                 band: collectedData.teachingBand,
@@ -431,7 +431,7 @@ const Register = ({ isStudent }) => {
                 grade: collectedData.teachingGrade,
                 scheduledStudents: []
               });
-              navigate('/dashboard', {state: {id: newID, password: collectedData.password}});
+              navigate('/hello-world-app/dashboard', {state: {id: newID, password: collectedData.password}});
             }
             setErrorMessage("");
           } catch (e) {

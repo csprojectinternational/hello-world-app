@@ -38,7 +38,7 @@ const ConnectConfirm = () => {
               <div style={{display: 'flex', justifyContent: 'center'}}>
                 <YellowButton onClick={() => {
                   // pass auth credentials back
-                  navigate('/dashboard', {state: {id: location.state.id, password: location.state.password}});
+                  navigate('/hello-world-app/dashboard', {state: {id: location.state.id, password: location.state.password}});
                 }} style={{width: '40vw'}}>Find More Students</YellowButton>
               </div>
             </Stack>}
