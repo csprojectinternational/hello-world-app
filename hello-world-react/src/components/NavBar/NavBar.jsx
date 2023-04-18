@@ -17,9 +17,11 @@ const NavBar = ({ showSignIn=true }) => {
         <Typography variant="h4" sx={{ fontWeight: 700, color: 'black', fontStyle: "none", fontSize: "5vmin" }}>
           TIE-D TOGETHER
         </Typography>
-        {showSignIn && <Link to="/hello-world-app/login" sx={{height: 0}}>
-          <YellowButton style={{ position: 'absolute', right: '1rem', fontSize: 'min(3vmin, 1rem)', height: '2rem', top: '2.5vmin' }}>Tutor Log In</YellowButton>
-        </Link>}
+        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'right', position: 'absolute', right: '1rem'}}>
+          {showSignIn && <Link to="/hello-world-app/login" sx={{height: 0}}>
+            <YellowButton style={{ height: '4vw', fontSize: 'min(1rem, 4vw)', padding: '12px 8px' }}>Tutor Log In</YellowButton>
+          </Link>}
+        </div>
       </Toolbar>
     </AppBar>
   )

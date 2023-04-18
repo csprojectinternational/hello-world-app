@@ -17,7 +17,17 @@ import BackButton from '../../components/BackButton/BackButton';
 // change settings
 // sign in for students, so they too can disconnect from lessons
 
-// deploy
+// better 404 page
+// better domain
+
+// 0 homepage buttons are too far apart for horizontal view
+// 0 tutor login screen background does not extend down for horizontal view
+// 0 tutor sign in button positioning looks bad
+// 0 back button is too high for horizontal view
+// 0 thanks screen does not have overflow
+
+// are there any visual errors on tutor logged in pages
+// does connectconfirm have text wrapping
 
 const Register = ({ isStudent }) => {
 
