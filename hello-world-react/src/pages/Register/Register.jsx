@@ -17,7 +17,6 @@ import BackButton from '../../components/BackButton/BackButton';
 // change settings
 // sign in for students, so they too can disconnect from lessons
 
-// table with signed up tutors
 // handle on catch in dashboard
 // remove console.logs, esp. in dashboard
 // deploy
@@ -62,20 +61,20 @@ const Register = ({ isStudent }) => {
 
   const navigate = useNavigate();
 
-  const [students, setStudents] = useState();
+  // const [students, setStudents] = useState();
 
-  useEffect(() => {
-    async function getData() {
-      try {
-        const res = await api.get('/api/v1/students/all');
-        setStudents(res.data);
-      } catch (e) {
-        setErrorMessage("A server error occured. Please try again later!");
-        console.log(e);
-      }
-    }
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   async function getData() {
+  //     try {
+  //       const res = await api.get('/api/v1/students/all');
+  //       setStudents(res.data);
+  //     } catch (e) {
+  //       setErrorMessage("A server error occured. Please try again later!");
+  //       console.log(e);
+  //     }
+  //   }
+  //   getData();
+  // }, []);
 
   const [collectedData, setCollectedData] = useState({
     firstName: "",
