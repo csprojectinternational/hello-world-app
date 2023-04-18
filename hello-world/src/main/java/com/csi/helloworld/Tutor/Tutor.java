@@ -102,11 +102,11 @@ public class Tutor {
         }
     
         else if (Arrays.asList(Student.saxophones).contains(studentInstrument) && Arrays.asList(Student.saxophones).contains(tutorInstrument)) {
-            score += 3;
+            score += 2;
         }
     
         else if (Arrays.asList(Student.clarinets).contains(studentInstrument) && Arrays.asList(Student.clarinets).contains(tutorInstrument)) {
-            score += 3;
+            score += 2;
         }
 
         else if (Arrays.asList(Student.brass).contains(studentInstrument) && Arrays.asList(Student.brass).contains(tutorInstrument)) {
