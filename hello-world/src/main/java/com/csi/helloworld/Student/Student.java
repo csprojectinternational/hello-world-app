@@ -68,6 +68,11 @@ public class Student {
         return this;
     }
 
+    public Student unscheduleLesson(String KisdID) {
+        this.setCurrentTutor(null);
+        return this;
+    }
+
     public boolean playsSameOrSimilarInstrument(Tutor tutor) {
         
         if (this.instrument.equals(tutor.getInstrument())) {
