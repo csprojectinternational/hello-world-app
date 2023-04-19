@@ -76,7 +76,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>spring-boot-docker</finalName>
+		<finalName>hello-world</finalName>
 	</build>
 
 </project>
