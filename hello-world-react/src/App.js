@@ -58,13 +58,13 @@ function App() {
       <ThemeProvider theme={primaryTheme}>
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<Onboarding />} />
-            <Route exact path="/register-student" element={<Register isStudent={true}/>} />
-            <Route exact path="/register-tutor" element={<Register isStudent={false}/>} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/dashboard" element={<Dashboard />} />
-            <Route exact path="/thanks" element={<Thanks />} />
-            <Route exact path="/connect-confirm" element={<ConnectConfirm />} />
+            <Route exact path="/hello-world-app" element={<Onboarding />} />
+            <Route exact path="/hello-world-app/register-student" element={<Register isStudent={true}/>} />
+            <Route exact path="/hello-world-app/register-tutor" element={<Register isStudent={false}/>} />
+            <Route exact path="/hello-world-app/login" element={<Login />} />
+            <Route exact path="/hello-world-app/dashboard" element={<Dashboard />} />
+            <Route exact path="/hello-world-app/thanks" element={<Thanks />} />
+            <Route exact path="/hello-world-app/connect-confirm" element={<ConnectConfirm />} />
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>

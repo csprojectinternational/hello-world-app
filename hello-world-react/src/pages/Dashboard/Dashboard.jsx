@@ -136,7 +136,7 @@ const Dashboard = () => {
                         try {
                           api.get(`/api/v1/students/connectStudent/${location.state.id}/${params.row.id}`);
                           // pass auth credentials on
-                          navigate('/connect-confirm', {state: {id: location.state.id, password: location.state.password, student: params.row}});
+                          navigate('/hello-world-app/connect-confirm', {state: {id: location.state.id, password: location.state.password, student: params.row}});
                         } catch (e) {
                           setErrorMessage("A server error occured. Please try again later.");
                           console.log(e.message);

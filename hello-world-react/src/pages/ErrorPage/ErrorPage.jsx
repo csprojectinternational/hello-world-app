@@ -12,7 +12,7 @@ const ErrorPage = () => {
       <NavBar />
       <div style={{position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
         <Typography variant="h4">Sorry, an error occured!</Typography>
-        <Link to="/" style={{textDecoration: "none"}}>
+        <Link to="/hello-world-app/" style={{textDecoration: "none"}}>
           <YellowButton style={{padding: "15px", margin: "25px", fontFamily: "Montserrat"}}>
             Return to Home
           </YellowButton>
