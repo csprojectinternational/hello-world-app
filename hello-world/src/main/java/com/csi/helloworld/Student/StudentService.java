@@ -7,7 +7,7 @@ import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("StudentService")
+@Service
 public class StudentService {
     @Autowired
     private StudentRepository studentRepository;
