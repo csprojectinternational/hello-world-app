@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/hello-world-app/static/css/main.712ddbcd.css",
-    "main.js": "/hello-world-app/static/js/main.cc3fd59d.js",
+    "main.js": "/hello-world-app/static/js/main.ede76522.js",
     "static/media/montserrat-all-700-normal.woff": "/hello-world-app/static/media/montserrat-all-700-normal.168d5b114e5a6d216802.woff",
     "static/media/montserrat-all-500-normal.woff": "/hello-world-app/static/media/montserrat-all-500-normal.124bdbbc44b5aae423df.woff",
     "static/media/montserrat-all-400-normal.woff": "/hello-world-app/static/media/montserrat-all-400-normal.327fab0afc997a2d9b16.woff",
@@ -29,10 +29,10 @@
     "static/media/montserrat-vietnamese-300-normal.woff2": "/hello-world-app/static/media/montserrat-vietnamese-300-normal.260b5062c37e2f23cb52.woff2",
     "index.html": "/hello-world-app/index.html",
     "main.712ddbcd.css.map": "/hello-world-app/static/css/main.712ddbcd.css.map",
-    "main.cc3fd59d.js.map": "/hello-world-app/static/js/main.cc3fd59d.js.map"
+    "main.ede76522.js.map": "/hello-world-app/static/js/main.ede76522.js.map"
   },
   "entrypoints": [
     "static/css/main.712ddbcd.css",
-    "static/js/main.cc3fd59d.js"
+    "static/js/main.ede76522.js"
   ]
 }
