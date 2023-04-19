@@ -20,9 +20,6 @@ import BackButton from '../../components/BackButton/BackButton';
 // better 404 page
 // better domain
 
-// are there any visual errors on tutor logged in pages
-// does connectconfirm have text wrapping
-
 const Register = ({ isStudent }) => {
 
   const instruments = [
