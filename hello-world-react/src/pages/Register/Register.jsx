@@ -12,13 +12,11 @@ import BackButton from '../../components/BackButton/BackButton';
 
 // TODO:
 
+// better domain, make sure 404 works
 // no duplicate students: check id, email, phone number
 // better onboarding page
 // change settings
 // sign in for students, so they too can disconnect from lessons
-
-// better 404 page
-// better domain
 
 const Register = ({ isStudent }) => {
 
