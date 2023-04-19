@@ -31,7 +31,7 @@ const ConnectConfirm = () => {
               <Typography variant="h5">Instrument: {student.instrument}</Typography>
               <Typography variant="h5">Setting Preference: {student.settingPreference}</Typography>
               <br /><Typography variant="h5" sx={{fontWeight: '900'}}>Reach out to them now:</Typography>
-              {student.communicationPreference != "Phone" && <Typography variant="h5">Email: {student.email}</Typography>}
+              {student.communicationPreference != "Phone" && <Typography variant="h5" sx={{overflowWrap: 'break-word'}}>Email: {student.email}</Typography>}
               {student.communicationPreference != "Email" && <Typography variant="h5">Phone: {student.phone}</Typography>}
               <br /><Typography variant="h5">If you have any other questions, please contact <em style={{fontWeight: '900', overflowWrap: 'break-word'}}>tiedtogether.connect@gmail.com</em></Typography>
               <br />
@@ -39,7 +39,7 @@ const ConnectConfirm = () => {
                 <YellowButton onClick={() => {
                   // pass auth credentials back
                   navigate('/hello-world-app/dashboard', {state: {id: location.state.id, password: location.state.password}});
-                }} style={{width: '40vw'}}>Find More Students</YellowButton>
+                }} style={{width: '40vw', height: '6rem'}}>Find More Students</YellowButton>
               </div>
             </Stack>}
           </Background>
