@@ -12,13 +12,11 @@ import BackButton from '../../components/BackButton/BackButton';
 
 // TODO:
 
+// better domain, make sure 404 works
 // no duplicate students: check id, email, phone number
 // better onboarding page
-// connect button on dashboard
-// use dashboard-dedicated endpoints
-// build connect confirmed
-// handle on catch in dashboard
-// remove console.logs
+// change settings
+// sign in for students, so they too can disconnect from lessons
 
 const Register = ({ isStudent }) => {
 
@@ -60,20 +58,20 @@ const Register = ({ isStudent }) => {
 
   const navigate = useNavigate();
 
-  const [students, setStudents] = useState();
+  // const [students, setStudents] = useState();
 
-  useEffect(() => {
-    async function getData() {
-      try {
-        const res = await api.get('/api/v1/students/all');
-        setStudents(res.data);
-      } catch (e) {
-        setErrorMessage("A server error occured. Please try again later!");
-        console.log(e);
-      }
-    }
-    getData();
-  }, []);
+  // useEffect(() => {
+  //   async function getData() {
+  //     try {
+  //       const res = await api.get('/api/v1/students/all');
+  //       setStudents(res.data);
+  //     } catch (e) {
+  //       setErrorMessage("A server error occured. Please try again later!");
+  //       console.log(e);
+  //     }
+  //   }
+  //   getData();
+  // }, []);
 
   const [collectedData, setCollectedData] = useState({
     firstName: "",
@@ -417,7 +415,7 @@ const Register = ({ isStudent }) => {
                 grade: collectedData.learningGrade,
                 currentTutor: null
               });
-              navigate('/thanks');
+              navigate('/hello-world-app/thanks');
             } else {
               api.post('/api/v1/tutors/newTutor', {
                 band: collectedData.teachingBand,
@@ -432,7 +430,7 @@ const Register = ({ isStudent }) => {
                 grade: collectedData.teachingGrade,
                 scheduledStudents: []
               });
-              navigate('/dashboard', {state: {id: newID, password: collectedData.password}});
+              navigate('/hello-world-app/dashboard', {state: {id: newID, password: collectedData.password}});
             }
             setErrorMessage("");
           } catch (e) {

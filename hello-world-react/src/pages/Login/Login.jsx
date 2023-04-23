@@ -80,7 +80,7 @@ const Login = () => {
             });
             if (loggedIn) {
               setErrorMessage("");
-              navigate(`/dashboard`, {state: {id: userId, password: userPassword}});
+              navigate(`/hello-world-app/dashboard`, {state: {id: userId, password: userPassword}});
             } else {
               setErrorMessage("Username or Password Incorrect.");
               return;

@@ -50,9 +50,6 @@ public class Tutor {
             public int compare(Student s1, Student s2) {
                 int score1 = calculateTeachingPriorityScore(s1, tutor);
                 int score2 = calculateTeachingPriorityScore(s2, tutor);
-                System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-                System.out.println(score1);
-                System.out.println(score2);
                 return score1 - score2;
             }
         });
@@ -105,18 +102,18 @@ public class Tutor {
         }
     
         else if (Arrays.asList(Student.saxophones).contains(studentInstrument) && Arrays.asList(Student.saxophones).contains(tutorInstrument)) {
-            score += 3;
+            score += 2;
         }
     
         else if (Arrays.asList(Student.clarinets).contains(studentInstrument) && Arrays.asList(Student.clarinets).contains(tutorInstrument)) {
-            score += 3;
+            score += 2;
+        }
+
+        else if (Arrays.asList(Student.brass).contains(studentInstrument) && Arrays.asList(Student.brass).contains(tutorInstrument)) {
+            score += 8;
         }
     
         else if (Arrays.asList(Student.woodwinds).contains(studentInstrument) && Arrays.asList(Student.woodwinds).contains(tutorInstrument)) {
-            score += 10;
-        }
-    
-        else if (Arrays.asList(Student.brass).contains(studentInstrument) && Arrays.asList(Student.brass).contains(tutorInstrument)) {
             score += 10;
         }
     
